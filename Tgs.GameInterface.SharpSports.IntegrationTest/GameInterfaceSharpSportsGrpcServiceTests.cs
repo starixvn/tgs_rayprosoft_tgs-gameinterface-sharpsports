@@ -18,7 +18,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async void CheckingService()
+	public async Task CheckingService()
 	{
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
@@ -37,7 +37,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void GameUrl()
+	public async Task GameUrl()
 	{
 		var grpcRequest = new GameUrlRequest
 		{
@@ -91,7 +91,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void PlayerBalance()
+	public async Task PlayerBalance()
 	{
 		var grpcRequest = new PlayerBalanceRequest
 		{
@@ -136,7 +136,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void FundIn()
+	public async Task FundIn()
 	{
 		var grpcRequest = new FundRequest
 		{
@@ -197,7 +197,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void FundOut()
+	public async Task FundOut()
 	{
 		var grpcRequest = new FundRequest
 		{
@@ -258,7 +258,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void FundStatus()
+	public async Task FundStatus()
 	{
 		var grpcRequest = new FundStatusRequest
 		{
@@ -308,7 +308,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void GameRecordSportsSettlement()
+	public async Task GameRecordSportsSettlement()
 	{
 		var grpcRequest = new GameRecordRequest
 		{
@@ -405,7 +405,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 	}
 
 	[Fact]
-	public async void GameRecordSportsUnsettlement()
+	public async Task GameRecordSportsUnsettlement()
 	{
 		var grpcRequest = new GameRecordRequest
 		{

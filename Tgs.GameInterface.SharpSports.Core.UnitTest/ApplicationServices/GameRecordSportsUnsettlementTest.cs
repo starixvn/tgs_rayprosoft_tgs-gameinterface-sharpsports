@@ -1,8 +1,9 @@
 ﻿using System.Text.Json.Nodes;
 using NSubstitute;
-using Tgs.GameInterface.SharpSports.Core.Models;
 using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+
+using Tgs.GameInterface.SharpSports.Core.Models;
 
 namespace Tgs.GameInterface.SharpSports.Core.UnitTest.ApplicationServices;
 
@@ -11,7 +12,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -87,7 +88,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[Theory]
 	[InlineData(0)]
 	[InlineData(1)]
-	public async void IsClosedFalse_WhenApiState0Or1(int state)
+	public async Task IsClosedFalse_WhenApiState0Or1(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -154,7 +155,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[InlineData(6)]
 	[InlineData(7)]
 	[InlineData(8)]
-	public async void IsClosedTrue_WhenApiStateNot0Not1(int state)
+	public async Task IsClosedTrue_WhenApiStateNot0Not1(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -216,7 +217,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[Theory]
 	[InlineData(5)]
 	[InlineData(7)]
-	public async void IsCancelTrue_WhenApiState5Or7(int state)
+	public async Task IsCancelTrue_WhenApiState5Or7(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -283,7 +284,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[InlineData(4)]
 	[InlineData(6)]
 	[InlineData(8)]
-	public async void IsCancelFalse_WhenApiStateNot5Not7(int state)
+	public async Task IsCancelFalse_WhenApiStateNot5Not7(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -343,7 +344,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	}
 
 	[Fact]
-	public async void IsRefundTrue_WhenApiState6()
+	public async Task IsRefundTrue_WhenApiState6()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -411,7 +412,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[InlineData(5)]
 	[InlineData(7)]
 	[InlineData(8)]
-	public async void IsRefundFalse_WhenApiStateNot6(int state)
+	public async Task IsRefundFalse_WhenApiStateNot6(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -471,7 +472,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	}
 
 	[Fact]
-	public async void IsVoidTrue_WhenApiState8()
+	public async Task IsVoidTrue_WhenApiState8()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -539,7 +540,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[InlineData(5)]
 	[InlineData(6)]
 	[InlineData(7)]
-	public async void IsVoidFalse_WhenApiStateNot8(int state)
+	public async Task IsVoidFalse_WhenApiStateNot8(int state)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -599,7 +600,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	}
 
 	[Fact]
-	public async void IsCashoutFalse_WhenApiCashoutType0()
+	public async Task IsCashoutFalse_WhenApiCashoutType0()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -661,7 +662,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	[Theory]
 	[InlineData("1")]
 	[InlineData("2")]
-	public async void IsCashoutTrue_WhenApiCashoutTypeNot0(string cashoutType)
+	public async Task IsCashoutTrue_WhenApiCashoutTypeNot0(string cashoutType)
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
@@ -721,7 +722,7 @@ public sealed class GameRecordSportsUnsettlementTest
 	}
 
 	[Fact]
-	public async void CalculateSettle()
+	public async Task CalculateSettle()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),

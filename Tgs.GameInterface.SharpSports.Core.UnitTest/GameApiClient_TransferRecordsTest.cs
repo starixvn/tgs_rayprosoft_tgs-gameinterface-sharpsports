@@ -12,7 +12,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async void TransferRecordsFound_WhenTradeTypeRECHARGE()
+	public async Task TransferRecordsFound_WhenTradeTypeRECHARGE()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -88,7 +88,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsFound_WhenTradeTypeDRAW()
+	public async Task TransferRecordsFound_WhenTradeTypeDRAW()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -163,7 +163,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeSETTLEMENT()
+	public async Task TransferRecordsNotFound_WhenTradeTypeSETTLEMENT()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -238,7 +238,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeBETTING()
+	public async Task TransferRecordsNotFound_WhenTradeTypeBETTING()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -313,7 +313,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeSYSTEM_REWARD()
+	public async Task TransferRecordsNotFound_WhenTradeTypeSYSTEM_REWARD()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -388,7 +388,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeREWARD_ANCHOR_2()
+	public async Task TransferRecordsNotFound_WhenTradeTypeREWARD_ANCHOR_2()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -463,7 +463,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeSEND_GIFT()
+	public async Task TransferRecordsNotFound_WhenTradeTypeSEND_GIFT()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -538,7 +538,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeGAME_BETTING()
+	public async Task TransferRecordsNotFound_WhenTradeTypeGAME_BETTING()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -613,7 +613,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeGAME_SETTLEMENT()
+	public async Task TransferRecordsNotFound_WhenTradeTypeGAME_SETTLEMENT()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -688,7 +688,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeLOTTERY_BET_ORDER()
+	public async Task TransferRecordsNotFound_WhenTradeTypeLOTTERY_BET_ORDER()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -763,7 +763,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeLOTTERY_NUMBER_SEET_ORDER()
+	public async Task TransferRecordsNotFound_WhenTradeTypeLOTTERY_NUMBER_SEET_ORDER()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -838,7 +838,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	}
 
 	[Fact]
-	public async void TransferRecordsNotFound_WhenTradeTypeLOTTERY_CANCELLATION_ORDER()
+	public async Task TransferRecordsNotFound_WhenTradeTypeLOTTERY_CANCELLATION_ORDER()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -928,7 +928,7 @@ public sealed class GameApiClient_TransferRecordsTest
 	[InlineData(400203)]
 	[InlineData(400204)]
 	[InlineData(400205)]
-	public async void ThrowErrorCodeException_WhenStatusCodeNot200(int code)
+	public async Task ThrowErrorCodeException_WhenStatusCodeNot200(int code)
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";

@@ -10,7 +10,7 @@ namespace Tgs.GameInterface.SharpSports.Core.UnitTest.ApplicationServices;
 public sealed class FundOutGetServiceTest
 {
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var query = new FundOutQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),

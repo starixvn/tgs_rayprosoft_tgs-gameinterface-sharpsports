@@ -1,15 +1,16 @@
 ﻿using System.Text.Json.Nodes;
 using NSubstitute;
-using Tgs.GameInterface.SharpSports.Core.Models;
 using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+
+using Tgs.GameInterface.SharpSports.Core.Models;
 
 namespace Tgs.GameInterface.SharpSports.Core.UnitTest.ApplicationServices;
 
 public sealed class FundInGetServiceTest
 {
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var query = new FundInQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),

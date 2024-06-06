@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Tgs.GameInterface.SharpSports.Core;
-using Tgs.GameInterface.SharpSports.Core.Models;
 using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+using Tgs.GameInterface.SharpSports.Core.Models;
 using Xunit;
 
 namespace Tgs.GameInterface.SharpSports.IntegrationTest;
@@ -16,7 +16,7 @@ public sealed class SharpSportsControllerTests
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async void GameUrlSports()
+	public async Task GameUrlSports()
 	{
 		var query = new GameUrlSportsQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -56,7 +56,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void PlayerBalance()
+	public async Task PlayerBalance()
 	{
 		var query = new PlayerBalanceQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -90,7 +90,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void FundIn()
+	public async Task FundIn()
 	{
 		var query = new FundInQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -140,7 +140,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void FundOut()
+	public async Task FundOut()
 	{
 		var query = new FundOutQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -190,7 +190,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void FundStatus()
+	public async Task FundStatus()
 	{
 		var query = new FundStatusQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -230,7 +230,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void GameRecordSportsSettlement()
+	public async Task GameRecordSportsSettlement()
 	{
 		var query = new GameRecordSportsSettlementQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
@@ -310,7 +310,7 @@ public sealed class SharpSportsControllerTests
 	}
 
 	[Fact]
-	public async void GameRecordSportsUnsettlement()
+	public async Task GameRecordSportsUnsettlement()
 	{
 		var query = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new Uri("https://api.yuansports1.com/"),

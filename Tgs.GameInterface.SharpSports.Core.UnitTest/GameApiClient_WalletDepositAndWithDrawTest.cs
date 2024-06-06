@@ -10,7 +10,7 @@ namespace Tgs.GameInterface.SharpSports.Core.UnitTest;
 public sealed class GameApiClient_WalletDepositAndWithDrawTest
 {
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -95,7 +95,7 @@ public sealed class GameApiClient_WalletDepositAndWithDrawTest
 	[InlineData(400205)]
 	[InlineData(500107)]
 	[InlineData(500129)]
-	public async void ThrowErrorCodeException_WhenStatusCodeNot200(int code)
+	public async Task ThrowErrorCodeException_WhenStatusCodeNot200(int code)
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";

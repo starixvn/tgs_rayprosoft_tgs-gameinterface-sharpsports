@@ -12,7 +12,7 @@ public sealed class GameApiClient_SportOrderListTest
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -103,7 +103,7 @@ public sealed class GameApiClient_SportOrderListTest
 	}
 
 	[Fact]
-	public async void ApiResponse_ResultDateEmpty_RealResultDateNull_WinGoldNull_ServiceReturn_ResultDateUnixEpoch_RealResultDateUnixEpoch_WinGold0()
+	public async Task ApiResponse_ResultDateEmpty_RealResultDateNull_WinGoldNull_ServiceReturn_ResultDateUnixEpoch_RealResultDateUnixEpoch_WinGold0()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -205,7 +205,7 @@ public sealed class GameApiClient_SportOrderListTest
 	[InlineData(400205)]
 	[InlineData(400208)]
 	[InlineData(400209)]
-	public async void ThrowErrorCodeException_WhenStatusCodeNot200(int code)
+	public async Task ThrowErrorCodeException_WhenStatusCodeNot200(int code)
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";

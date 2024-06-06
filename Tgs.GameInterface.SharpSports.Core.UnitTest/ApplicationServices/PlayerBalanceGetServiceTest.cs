@@ -7,7 +7,7 @@ namespace Tgs.GameInterface.SharpSports.Core.UnitTest.ApplicationServices;
 public sealed class PlayerBalanceGetServiceTest
 {
 	[Fact]
-	public async void Normal_Process()
+	public async Task Normal_Process()
 	{
 		var query = new PlayerBalanceQuery(
 			ApiUrl: new("https://api.yuansports1.com/"),
