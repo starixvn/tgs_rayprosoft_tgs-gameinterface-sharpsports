@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Tgs.GameInterface.SharpSports.Core;
-using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.GameInterface.SharpSports.Core.Models;
 using Xunit;
 
@@ -22,7 +22,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029",
 			IsMobile: false,
 			Language: "zh-cn",
@@ -33,7 +33,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				loginName: Arg.Is(query.PlayerCode),
 				terType: Arg.Is(query.IsMobile ? TerType.H5 : TerType.PC),
 				language: Arg.Is(query.Language),
@@ -62,7 +62,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029");
 		var response = 10m;
 		var apiClient = Substitute.For<IGameApiClient>();
@@ -70,7 +70,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				loginName: Arg.Is(query.PlayerCode))
 			.Returns(ValueTask.FromResult(response));
 		var factory = new WebApplicationFactory<Program>()
@@ -96,7 +96,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029",
 			OrderId: "01HZ1GGQFKP2278WJVBVGYT7NX",
 			Amount: 6m);
@@ -116,7 +116,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				loginName: Arg.Is(query.PlayerCode),
 				merchantPayNo: Arg.Is(query.OrderId),
 				tradeType: Arg.Is(TradeType.WithDraw),
@@ -146,7 +146,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029",
 			OrderId: "01HZ1GGQFKP2278WJVBVGYT7NX",
 			Amount: 6m);
@@ -166,7 +166,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				loginName: Arg.Is(query.PlayerCode),
 				merchantPayNo: Arg.Is(query.OrderId),
 				tradeType: Arg.Is(TradeType.Deposit),
@@ -196,7 +196,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029",
 			OrderOn: new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)),
 			OrderId: "01HZ1GM13J5QZGXGH4JW7AJFXT");
@@ -205,7 +205,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				loginName: Arg.Is(query.PlayerCode),
 				startTime: Arg.Is(query.OrderOn.AddHours(-6)),
 				endTime: Arg.Is(query.OrderOn.Add(new(hours: 5, minutes: 59, seconds: 59))),
@@ -236,7 +236,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			StartTime: new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)),
 			EndTime: new DateTimeOffset(2024, 05, 29, 13, 00, 00, offset: TimeSpan.FromHours(8)),
 			Page: 1,
@@ -271,7 +271,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				beginTime: Arg.Is(query.StartTime),
 				endTime: Arg.Is(query.EndTime),
 				timeType: Arg.Is(SportOrderListTimeType.ResultDate),
@@ -316,7 +316,7 @@ public sealed class SharpSportsControllerTests
 			ApiUrl: new Uri("https://api.yuansports1.com/"),
 			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			StartTime: new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)),
 			EndTime: new DateTimeOffset(2024, 05, 29, 13, 00, 00, offset: TimeSpan.FromHours(8)),
 			Page: 1,
@@ -351,7 +351,7 @@ public sealed class SharpSportsControllerTests
 				apiBaseUrl: Arg.Is(query.ApiUrl),
 				merchantId: Arg.Is(query.MerchantId),
 				clientId: Arg.Is(query.ClientId),
-				clientSecret: Arg.Is(query.SecretKey),
+				clientSecret: Arg.Is(query.ClientSecret),
 				beginTime: Arg.Is(query.StartTime),
 				endTime: Arg.Is(query.EndTime),
 				timeType: Arg.Is(SportOrderListTimeType.CreateDate),

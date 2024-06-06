@@ -1,5 +1,4 @@
-﻿using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
-using Tgs.ServiceUtility;
+﻿using Tgs.ServiceUtility;
 
 namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
@@ -11,7 +10,7 @@ public sealed class GameUrlSportsGetService(IGameApiClient apiClient) : IGetServ
 			apiBaseUrl: query.ApiUrl,
 			merchantId: query.MerchantId,
 			clientId: query.ClientId,
-			clientSecret: query.SecretKey,
+			clientSecret: query.ClientSecret,
 			loginName: query.PlayerCode,
 			terType: query.IsMobile ? TerType.H5 : TerType.PC,
 			language: query.Language,

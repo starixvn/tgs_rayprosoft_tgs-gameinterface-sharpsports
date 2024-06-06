@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.ServiceUtility;
 
 namespace Tgs.GameInterface.SharpSports.Controllers;
@@ -18,7 +18,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.98ktest.com",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "isMobile": true,
 	///     "language": "zh-cn",
@@ -39,7 +39,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029"
 	/// }
 	/// </remarks>
@@ -57,7 +57,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "orderId": "XXXXX",
 	///     "amount": 10
@@ -77,7 +77,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "orderId": "XXXXX",
 	///     "amount": 10
@@ -97,7 +97,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "orderOn": "2024-06-03T17:00:00+08:00",
 	///     "orderId": "XXXXX"
@@ -117,7 +117,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "startTime": "2024-06-03T17:00:00+08:00",
 	///     "endTime": "2024-06-03T17:10:00+08:00",
@@ -143,7 +143,7 @@ public sealed class SharpSportsController : ControllerBase
 	///     "apiUrl": "https://api.yuansports1.com/",
 	///     "merchantId": "c6a33e4e235e731b51d2f303199edeb4",
 	///     "clientId": "2a954fedf9a203d646e1a7f3c32528df",
-	///     "secretKey": "1ff45c6ed7494b04940dc0bd9e0dca6b",
+	///     "ClientSecret": "1ff45c6ed7494b04940dc0bd9e0dca6b",
 	///     "playerCode": "4ucmqplxb029",
 	///     "startTime": "2024-06-03T17:00:00+08:00",
 	///     "endTime": "2024-06-03T17:10:00+08:00",

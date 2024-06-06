@@ -1,10 +1,10 @@
-﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
 public sealed record class GameUrlSportsQuery(
 	Uri ApiUrl,
 	string MerchantId,
 	string ClientId,
-	string SecretKey,
+	string ClientSecret,
 	string PlayerCode,
 	bool IsMobile,
 	string Language,

@@ -1,5 +1,4 @@
-﻿using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
-using Tgs.ServiceUtility;
+﻿using Tgs.ServiceUtility;
 
 namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
@@ -11,7 +10,7 @@ public sealed class FundStatusGetService(IGameApiClient apiClient) : IGetService
 			apiBaseUrl: query.ApiUrl,
 			merchantId: query.MerchantId,
 			clientId: query.ClientId,
-			clientSecret: query.SecretKey,
+			clientSecret: query.ClientSecret,
 			loginName: query.PlayerCode,
 			startTime: query.OrderOn.Add(TimeSpan.FromHours(-6)),
 			endTime: query.OrderOn.Add(new(hours: 5, minutes: 59, seconds: 59)),

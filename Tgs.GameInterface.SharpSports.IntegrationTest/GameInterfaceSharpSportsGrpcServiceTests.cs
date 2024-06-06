@@ -6,10 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Tgs.GameInterface.SharpSports.Client;
 using Tgs.GameInterface.SharpSports.Core;
+using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.GameInterface.SharpSports.Protos;
 using Tgs.ServiceUtility;
 using Xunit;
-using ServiceModels = Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
 
 namespace Tgs.GameInterface.SharpSports.IntegrationTest;
 
@@ -44,30 +44,30 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode = "4ucmqplxb029",
 			IsMobile = true,
 			Language = "zh-cn",
 			Ip = "127.0.0.1",
 		};
-		var serviceRequest = new ServiceModels.GameUrlSportsQuery(
+		var serviceRequest = new GameUrlSportsQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode,
 			IsMobile: grpcRequest.IsMobile,
 			Language: grpcRequest.Language,
 			Ip: grpcRequest.Ip);
-		var serviceResponse = new ServiceModels.GameUrlSportsResult(
+		var serviceResponse = new GameUrlSportsResult(
 			GameUrl: "https://xxx.xxx.xxx/xxx");
-		var fakeService = Substitute.For<IGetService<ServiceModels.GameUrlSportsQuery, ServiceModels.GameUrlSportsResult>>();
+		var fakeService = Substitute.For<IGetService<GameUrlSportsQuery, GameUrlSportsResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<ServiceModels.GameUrlSportsQuery, ServiceModels.GameUrlSportsResult>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<GameUrlSportsQuery, GameUrlSportsResult>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -80,7 +80,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			playerCode: grpcRequest.PlayerCode,
 			isMobile: grpcRequest.IsMobile,
 			language: grpcRequest.Language,
@@ -98,24 +98,24 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode = "4ucmqplxb029",
 		};
-		var serviceRequest = new ServiceModels.PlayerBalanceQuery(
+		var serviceRequest = new PlayerBalanceQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode);
-		var serviceResponse = new ServiceModels.PlayerBalanceResult(
+		var serviceResponse = new PlayerBalanceResult(
 			Balance: 10m);
-		var fakeService = Substitute.For<IGetService<ServiceModels.PlayerBalanceQuery, ServiceModels.PlayerBalanceResult>>();
+		var fakeService = Substitute.For<IGetService<PlayerBalanceQuery, PlayerBalanceResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<ServiceModels.PlayerBalanceQuery, ServiceModels.PlayerBalanceResult>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<PlayerBalanceQuery, PlayerBalanceResult>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -128,7 +128,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			playerCode: grpcRequest.PlayerCode)
 			.ConfigureAwait(true);
 
@@ -143,16 +143,16 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode = "4ucmqplxb029",
 			OrderId = "01HZ1GGQFKP2278WJVBVGYT7NX",
 			Amount = 6m,
 		};
-		var serviceRequest = new ServiceModels.FundInQuery(
+		var serviceRequest = new FundInQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode,
 			OrderId: grpcRequest.OrderId,
 			Amount: grpcRequest.Amount);
@@ -162,18 +162,18 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			["merchantPayNo"] = grpcRequest.OrderId,
 			["balance"] = 10m,
 		};
-		var serviceResponse = new ServiceModels.FundResult(
+		var serviceResponse = new FundResult(
 			ExternalOrderId: json["tradeNo"]!.GetValue<string>(),
 			OrderId: json["merchantPayNo"]!.GetValue<string>(),
 			Balance: json["balance"]!.GetValue<decimal>(),
 			Resp: json.ToJsonString());
-		var fakeService = Substitute.For<IGetService<ServiceModels.FundInQuery, ServiceModels.FundResult>>();
+		var fakeService = Substitute.For<IGetService<FundInQuery, FundResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<ServiceModels.FundInQuery, ServiceModels.FundResult>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<FundInQuery, FundResult>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -186,7 +186,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			playerCode: grpcRequest.PlayerCode,
 			orderId: grpcRequest.OrderId,
 			amount: grpcRequest.Amount)
@@ -204,16 +204,16 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode = "4ucmqplxb029",
 			OrderId = "01HZ1GGQFKP2278WJVBVGYT7NX",
 			Amount = 6m,
 		};
-		var serviceRequest = new ServiceModels.FundOutQuery(
+		var serviceRequest = new FundOutQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode,
 			OrderId: grpcRequest.OrderId,
 			Amount: grpcRequest.Amount);
@@ -223,18 +223,18 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			["merchantPayNo"] = grpcRequest.OrderId,
 			["balance"] = 10m,
 		};
-		var serviceResponse = new ServiceModels.FundResult(
+		var serviceResponse = new FundResult(
 			ExternalOrderId: json["tradeNo"]!.GetValue<string>(),
 			OrderId: json["merchantPayNo"]!.GetValue<string>(),
 			Balance: json["balance"]!.GetValue<decimal>(),
 			Resp: json.ToJsonString());
-		var fakeService = Substitute.For<IGetService<ServiceModels.FundOutQuery, ServiceModels.FundResult>>();
+		var fakeService = Substitute.For<IGetService<FundOutQuery, FundResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<ServiceModels.FundOutQuery, ServiceModels.FundResult>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<FundOutQuery, FundResult>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -247,7 +247,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			playerCode: grpcRequest.PlayerCode,
 			orderId: grpcRequest.OrderId,
 			amount: grpcRequest.Amount)
@@ -265,27 +265,27 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode = "4ucmqplxb029",
 			OrderOn = new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)).ToTimestamp(),
 			OrderId = "01HZ1GM13J5QZGXGH4JW7AJFXT",
 		};
-		var serviceRequest = new ServiceModels.FundStatusQuery(
+		var serviceRequest = new FundStatusQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode,
 			OrderOn: grpcRequest.OrderOn.ToDateTimeOffset(),
 			OrderId: grpcRequest.OrderId);
 		var serviceResponse = true;
-		var fakeService = Substitute.For<IGetService<ServiceModels.FundStatusQuery, bool>>();
+		var fakeService = Substitute.For<IGetService<FundStatusQuery, bool>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<ServiceModels.FundStatusQuery, bool>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IGetService<FundStatusQuery, bool>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -298,7 +298,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			playerCode: grpcRequest.PlayerCode,
 			orderOn: grpcRequest.OrderOn.ToDateTimeOffset(),
 			orderId: grpcRequest.OrderId)
@@ -315,17 +315,17 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			StartTime = new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)).ToTimestamp(),
 			EndTime = new DateTimeOffset(2024, 05, 29, 13, 00, 00, offset: TimeSpan.FromHours(8)).ToTimestamp(),
 			Page = 1,
 			PageSize = 200,
 		};
-		var serviceRequest = new ServiceModels.GameRecordSportsSettlementQuery(
+		var serviceRequest = new GameRecordSportsSettlementQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			StartTime: grpcRequest.StartTime.ToDateTimeOffset(),
 			EndTime: grpcRequest.EndTime.ToDateTimeOffset(),
 			Page: grpcRequest.Page,
@@ -343,7 +343,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			["winGold"] = 2m,
 			["cashoutType"] = "0",
 		};
-		var serviceResponseItem = new ServiceModels.GameRecordSportsGameBetSportsItem(
+		var serviceResponseItem = new GameRecordSportsGameBetSportsItem(
 			ExternalBetId: json["orderId"]!.GetValue<string>(),
 			PlayerCode: json["loginName"]!.GetValue<string>(),
 			IsClosed: json["state"]!.GetValue<int>() is not (0 or 1),
@@ -359,13 +359,13 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			Settle: json["realGold"]!.GetValue<decimal>() + json["winGold"]!.GetValue<decimal>(),
 			WinLoss: json["winGold"]!.GetValue<decimal>(),
 			AdditionalData: json.ToJsonString());
-		var fakeService = Substitute.For<IQueryService<ServiceModels.GameRecordSportsSettlementQuery, ServiceModels.GameRecordSportsGameBetSportsItem>>();
+		var fakeService = Substitute.For<IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsGameBetSportsItem>>();
 		fakeService.QueryAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(new[] { serviceResponseItem }.ToAsyncEnumerable());
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IQueryService<ServiceModels.GameRecordSportsSettlementQuery, ServiceModels.GameRecordSportsGameBetSportsItem>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsGameBetSportsItem>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -378,7 +378,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			startTime: grpcRequest.StartTime.ToDateTimeOffset(),
 			endTime: grpcRequest.EndTime.ToDateTimeOffset(),
 			page: grpcRequest.Page,
@@ -412,17 +412,17 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ApiUrl = "https://api.yuansports1.com/",
 			MerchantId = "c6a33e4e235e731b51d2f303199edeb4",
 			ClientId = "2a954fedf9a203d646e1a7f3c32528df",
-			SecretKey = "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			ClientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			StartTime = new DateTimeOffset(2024, 05, 28, 14, 59, 59, offset: TimeSpan.FromHours(8)).ToTimestamp(),
 			EndTime = new DateTimeOffset(2024, 05, 29, 13, 00, 00, offset: TimeSpan.FromHours(8)).ToTimestamp(),
 			Page = 1,
 			PageSize = 200,
 		};
-		var serviceRequest = new ServiceModels.GameRecordSportsUnsettlementQuery(
+		var serviceRequest = new GameRecordSportsUnsettlementQuery(
 			ApiUrl: new Uri(grpcRequest.ApiUrl),
 			MerchantId: grpcRequest.MerchantId,
 			ClientId: grpcRequest.ClientId,
-			SecretKey: grpcRequest.SecretKey,
+			ClientSecret: grpcRequest.ClientSecret,
 			StartTime: grpcRequest.StartTime.ToDateTimeOffset(),
 			EndTime: grpcRequest.EndTime.ToDateTimeOffset(),
 			Page: grpcRequest.Page,
@@ -440,7 +440,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			["winGold"] = 2m,
 			["cashoutType"] = "0",
 		};
-		var serviceResponseItem = new ServiceModels.GameRecordSportsGameBetSportsItem(
+		var serviceResponseItem = new GameRecordSportsGameBetSportsItem(
 			ExternalBetId: json["orderId"]!.GetValue<string>(),
 			PlayerCode: json["loginName"]!.GetValue<string>(),
 			IsClosed: json["state"]!.GetValue<int>() is not (0 or 1),
@@ -456,13 +456,13 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			Settle: json["realGold"]!.GetValue<decimal>() + json["winGold"]!.GetValue<decimal>(),
 			WinLoss: json["winGold"]!.GetValue<decimal>(),
 			AdditionalData: json.ToJsonString());
-		var fakeService = Substitute.For<IQueryService<ServiceModels.GameRecordSportsUnsettlementQuery, ServiceModels.GameRecordSportsGameBetSportsItem>>();
+		var fakeService = Substitute.For<IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsGameBetSportsItem>>();
 		fakeService.QueryAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(new[] { serviceResponseItem }.ToAsyncEnumerable());
 		var factory = new WebApplicationFactory<Program>()
 			.WithWebHostBuilder(builder => builder.ConfigureServices(services =>
 			{
 				services.Remove(services.First(d => d.ServiceType == typeof(IGameApiClient)));
-				services.Remove(services.First(d => d.ServiceType == typeof(IQueryService<ServiceModels.GameRecordSportsUnsettlementQuery, ServiceModels.GameRecordSportsGameBetSportsItem>)));
+				services.Remove(services.First(d => d.ServiceType == typeof(IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsGameBetSportsItem>)));
 				services.AddSingleton(Substitute.For<IGameApiClient>());
 				services.AddSingleton(fakeService);
 			}));
@@ -475,7 +475,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			apiUrl: new Uri(grpcRequest.ApiUrl),
 			merchantId: grpcRequest.MerchantId,
 			clientId: grpcRequest.ClientId,
-			secretKey: grpcRequest.SecretKey,
+			clientSecret: grpcRequest.ClientSecret,
 			startTime: grpcRequest.StartTime.ToDateTimeOffset(),
 			endTime: grpcRequest.EndTime.ToDateTimeOffset(),
 			page: grpcRequest.Page,

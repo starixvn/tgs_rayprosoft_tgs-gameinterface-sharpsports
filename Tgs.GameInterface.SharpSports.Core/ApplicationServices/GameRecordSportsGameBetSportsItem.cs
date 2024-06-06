@@ -1,4 +1,4 @@
-﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
 public sealed record class GameRecordSportsGameBetSportsItem(
 	string ExternalBetId,

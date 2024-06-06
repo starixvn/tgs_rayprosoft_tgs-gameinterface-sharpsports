@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
 using Tgs.ServiceUtility;
 
 namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
@@ -12,7 +11,7 @@ public sealed class GameRecordSportsSettlement(IGameApiClient apiClient) : IQuer
 			apiBaseUrl: query.ApiUrl,
 			merchantId: query.MerchantId,
 			clientId: query.ClientId,
-			clientSecret: query.SecretKey,
+			clientSecret: query.ClientSecret,
 			beginTime: query.StartTime,
 			endTime: query.EndTime,
 			timeType: SportOrderListTimeType.ResultDate,

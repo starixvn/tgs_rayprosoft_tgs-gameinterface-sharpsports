@@ -1,4 +1,4 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
 import "phoenix/protobuf/decimal.proto";
 import "google/protobuf/timestamp.proto";
@@ -22,7 +22,7 @@ message PlayerBalanceRequest {
   string api_url = 1;
   string merchant_id = 2;
   string client_id = 3;
-  string secret_key = 4;
+  string client_secret = 4;
   string player_code = 5;
 }
 
@@ -30,7 +30,7 @@ message FundRequest {
   string api_url = 1;
   string merchant_id = 2;
   string client_id = 3;
-  string secret_key = 4;
+  string client_secret = 4;
   string player_code = 5;
   string order_id = 6;
   phoenix.protobuf.DecimalValue amount = 7;
@@ -40,7 +40,7 @@ message FundStatusRequest {
   string api_url = 1;
   string merchant_id = 2;
   string client_id = 3;
-  string secret_key = 4;
+  string client_secret = 4;
   string player_code = 5;
   google.protobuf.Timestamp order_on = 6;
   string order_id = 7;
@@ -50,7 +50,7 @@ message GameUrlRequest {
   string api_url = 1;
   string merchant_id = 2;
   string client_id = 3;
-  string secret_key = 4;
+  string client_secret = 4;
   string player_code = 5;
   bool is_mobile = 6;
   string language = 7;
@@ -61,7 +61,7 @@ message GameRecordRequest {
   string api_url = 1;
   string merchant_id = 2;
   string client_id = 3;
-  string secret_key = 4;
+  string client_secret = 4;
   google.protobuf.Timestamp start_time = 5; 
   google.protobuf.Timestamp end_time = 6;
   int32 page = 7;

@@ -1,6 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using Tgs.GameInterface.SharpSports.Core.ApplicationServices.Models;
+using Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 using Tgs.GameInterface.SharpSports.Protos;
 using Tgs.ServiceUtility;
 
@@ -33,7 +33,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			PlayerCode: request.PlayerCode,
 			IsMobile: request.IsMobile,
 			Language: request.Language,
@@ -56,7 +56,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			PlayerCode: request.PlayerCode);
 
 		var result = await playerBalanceService.GetAsync(
@@ -76,7 +76,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			PlayerCode: request.PlayerCode,
 			OrderId: request.OrderId,
 			Amount: request.Amount);
@@ -99,7 +99,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			PlayerCode: request.PlayerCode,
 			OrderId: request.OrderId,
 			Amount: request.Amount);
@@ -122,7 +122,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			PlayerCode: request.PlayerCode,
 			OrderOn: request.OrderOn.ToDateTimeOffset(),
 			OrderId: request.OrderId);
@@ -144,7 +144,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			StartTime: request.StartTime.ToDateTimeOffset(),
 			EndTime: request.EndTime.ToDateTimeOffset(),
 			request.Page,
@@ -193,7 +193,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 			ApiUrl: new Uri(request.ApiUrl),
 			MerchantId: request.MerchantId,
 			ClientId: request.ClientId,
-			SecretKey: request.SecretKey,
+			ClientSecret: request.ClientSecret,
 			StartTime: request.StartTime.ToDateTimeOffset(),
 			EndTime: request.EndTime.ToDateTimeOffset(),
 			request.Page,
