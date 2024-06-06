@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports.Core", "Tgs.GameInterface.SharpSports.Core\Tgs.GameInterface.SharpSports.Core.csproj", "{BDC2E36E-6EC1-4808-BD32-07904895BCF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports", "Tgs.GameInterface.SharpSports\Tgs.GameInterface.SharpSports.csproj", "{B516FBEA-D371-4D7B-BAA8-6227FB9C74F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports.Core.UnitTest", "Tgs.GameInterface.SharpSports.Core.UnitTest\Tgs.GameInterface.SharpSports.Core.UnitTest.csproj", "{6A57413B-953D-4EA4-8BAF-E8E200C1BC8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports.Client", "Tgs.GameInterface.SharpSports.Client\Tgs.GameInterface.SharpSports.Client.csproj", "{8B83407C-863B-4E88-A7D5-CAF37C6897CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports.IntegrationTest", "Tgs.GameInterface.SharpSports.IntegrationTest\Tgs.GameInterface.SharpSports.IntegrationTest.csproj", "{B008CFF0-DAD0-4932-98D2-A0C45C72DF13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tgs.GameInterface.SharpSports.Protos", "Tgs.GameInterface.SharpSports.Protos\Tgs.GameInterface.SharpSports.Protos.csproj", "{6470A12F-B84F-4704-B492-A5FF67CD4E1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDC2E36E-6EC1-4808-BD32-07904895BCF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC2E36E-6EC1-4808-BD32-07904895BCF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC2E36E-6EC1-4808-BD32-07904895BCF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC2E36E-6EC1-4808-BD32-07904895BCF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B516FBEA-D371-4D7B-BAA8-6227FB9C74F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B516FBEA-D371-4D7B-BAA8-6227FB9C74F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B516FBEA-D371-4D7B-BAA8-6227FB9C74F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B516FBEA-D371-4D7B-BAA8-6227FB9C74F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A57413B-953D-4EA4-8BAF-E8E200C1BC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A57413B-953D-4EA4-8BAF-E8E200C1BC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A57413B-953D-4EA4-8BAF-E8E200C1BC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A57413B-953D-4EA4-8BAF-E8E200C1BC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B83407C-863B-4E88-A7D5-CAF37C6897CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B83407C-863B-4E88-A7D5-CAF37C6897CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B83407C-863B-4E88-A7D5-CAF37C6897CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B83407C-863B-4E88-A7D5-CAF37C6897CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B008CFF0-DAD0-4932-98D2-A0C45C72DF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B008CFF0-DAD0-4932-98D2-A0C45C72DF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B008CFF0-DAD0-4932-98D2-A0C45C72DF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B008CFF0-DAD0-4932-98D2-A0C45C72DF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6470A12F-B84F-4704-B492-A5FF67CD4E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6470A12F-B84F-4704-B492-A5FF67CD4E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6470A12F-B84F-4704-B492-A5FF67CD4E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6470A12F-B84F-4704-B492-A5FF67CD4E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
