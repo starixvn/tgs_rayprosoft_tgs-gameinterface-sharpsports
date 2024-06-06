@@ -1,10 +1,11 @@
 ﻿using System.Text.Json.Nodes;
+using Tgs.GameInterface.SharpSports.Core.Models;
 
 namespace Tgs.GameInterface.SharpSports.Core;
 
 internal sealed partial class GameApiClient
 {
-	public async ValueTask<decimal> PlayerBalanceAsync(
+	public async ValueTask<PlayerBalanceResponse> PlayerBalanceAsync(
 		Uri apiBaseUrl,
 		string merchantId,
 		string clientId,
@@ -29,10 +30,19 @@ internal sealed partial class GameApiClient
 
 		var code = jsonNode["code"]!.GetValue<int>();
 		if (code != 200)
-			throw new ErrorCodeException(code, jsonNode["msg"]?.GetValue<string>() ?? Code2Message(code));
+		{
+			return code != 400104
+				? throw new ErrorCodeException(code, jsonNode["msg"]?.GetValue<string>() ?? Code2Message(code))
+				: new PlayerBalanceResponse(
+					IsPlayerExists: false,
+					Balance: 0.0m);
+		}
 
 		var data = jsonNode["data"]!;
-		return data["balance"]!.GetValue<decimal>();
+
+		return new PlayerBalanceResponse(
+			IsPlayerExists: true,
+			Balance: data["balance"]!.GetValue<decimal>());
 
 		static string Code2Message(int code) => code switch
 		{

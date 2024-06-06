@@ -77,7 +77,8 @@ message BaseReply{
 }
 
 message PlayerBalanceReply {
-  phoenix.protobuf.DecimalValue balance = 2;
+	bool is_player_exist = 1;
+	phoenix.protobuf.DecimalValue balance = 2;
 }
 
 message FundReply {

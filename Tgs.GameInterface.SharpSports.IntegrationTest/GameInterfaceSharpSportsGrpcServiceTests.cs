@@ -108,6 +108,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode);
 		var serviceResponse = new PlayerBalanceResult(
+			IsPlayerExists: true,
 			Balance: 10m);
 		var fakeService = Substitute.For<IGetService<PlayerBalanceQuery, PlayerBalanceResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
@@ -132,6 +133,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			playerCode: grpcRequest.PlayerCode)
 			.ConfigureAwait(true);
 
+		Assert.True(actual.IsPlayerExist);
 		Assert.Equal(10m, (decimal)actual.Balance);
 	}
 

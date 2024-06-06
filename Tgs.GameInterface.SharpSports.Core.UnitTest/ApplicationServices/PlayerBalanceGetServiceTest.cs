@@ -14,7 +14,9 @@ public sealed class PlayerBalanceGetServiceTest
 			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
 			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
 			PlayerCode: "4ucmqplxb029");
-		var response = 60m;
+		var response = new Models.PlayerBalanceResponse(
+			true,
+			   60m);
 		var fakeGameApiClient = Substitute.For<IGameApiClient>();
 		_ = fakeGameApiClient
 			.PlayerBalanceAsync(
@@ -29,6 +31,7 @@ public sealed class PlayerBalanceGetServiceTest
 		var actual = await sut.GetAsync(query).ConfigureAwait(true);
 
 		Assert.NotNull(actual);
+		Assert.True(actual.IsPlayerExists);
 		Assert.Equal(60m, actual.Balance);
 	}
 }

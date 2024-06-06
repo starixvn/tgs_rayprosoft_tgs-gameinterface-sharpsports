@@ -15,7 +15,7 @@ public interface IGameApiClient
 		string ip,
 		CancellationToken cancellationToken = default);
 
-	ValueTask<decimal> PlayerBalanceAsync(
+	ValueTask<PlayerBalanceResponse> PlayerBalanceAsync(
 		Uri apiBaseUrl,
 		string merchantId,
 		string clientId,
