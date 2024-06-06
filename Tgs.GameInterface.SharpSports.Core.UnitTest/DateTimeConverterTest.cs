@@ -37,7 +37,8 @@ public sealed class DateTimeConverterTest
 	{
 		var sut = new DateTimeConverter();
 
-		var actual = sut.StringConvertToDatetime("2024-06-04T13:12:11 +08:00");
+		var dateTime = new DateTimeOffset(2024, 06, 04, 05, 12, 11, TimeSpan.Zero);
+		var actual = sut.StringConvertToDatetime(dateTime.ToString("u"));
 
 		Assert.Equal(new DateTimeOffset(2024, 06, 04, 13, 12, 11, offset: TimeSpan.FromHours(8)), actual);
 	}
