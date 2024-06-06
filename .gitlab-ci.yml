@@ -1,7 +1,7 @@
 variables:
-  ImageName: pgtgs/game-gameinterface-sharp
-  TgsSettingKey: game-gameinterface-sharp
-  HelmTemplateFolderName: game-gameinterface-sharp
+  ImageName: pgtgs/game-gameinterface-sharpsports
+  TgsSettingKey: game-gameinterface-sharpsports
+  HelmTemplateFolderName: game-gameinterface-sharpsports
   BuildCacheKey: Tgs.GameInterface.SharpSports.$CI_PIPELINE_ID
 
 default:

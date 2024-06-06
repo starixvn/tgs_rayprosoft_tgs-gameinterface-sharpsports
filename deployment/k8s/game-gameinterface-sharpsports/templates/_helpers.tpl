@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "game-gameinterface-sharp.name" -}}
+{{- define "game-gameinterface-sharpsports.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "game-gameinterface-sharp.fullname" -}}
+{{- define "game-gameinterface-sharpsports.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "game-gameinterface-sharp.chart" -}}
+{{- define "game-gameinterface-sharpsports.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "game-gameinterface-sharp.labels" -}}
-helm.sh/chart: {{ include "game-gameinterface-sharp.chart" . }}
-{{ include "game-gameinterface-sharp.selectorLabels" . }}
+{{- define "game-gameinterface-sharpsports.labels" -}}
+helm.sh/chart: {{ include "game-gameinterface-sharpsports.chart" . }}
+{{ include "game-gameinterface-sharpsports.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,21 +45,21 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "game-gameinterface-sharp.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "game-gameinterface-sharp.name" . }}
+{{- define "game-gameinterface-sharpsports.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "game-gameinterface-sharpsports.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app: {{ include "game-gameinterface-sharp.name" . }}
+app: {{ include "game-gameinterface-sharpsports.name" . }}
 tgs.kind: game
 tgs.game.kind: gameinterface
-tgs.gameprovider.kind: sharp
+tgs.gameprovider.kind: sharpsports
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "game-gameinterface-sharp.serviceAccountName" -}}
+{{- define "game-gameinterface-sharpsports.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "game-gameinterface-sharp.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "game-gameinterface-sharpsports.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

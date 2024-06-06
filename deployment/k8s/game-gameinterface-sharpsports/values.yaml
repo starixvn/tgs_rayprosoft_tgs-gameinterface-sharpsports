@@ -1,19 +1,19 @@
-# Default values for game-gameinterface-sharp.
+# Default values for game-gameinterface-sharpsports.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: pgtgs/game-gameinterface-sharp
+  repository: pgtgs/game-gameinterface-sharpsports
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets:
   - name: dockerhub
-nameOverride: "game-gameinterface-sharp"
-fullnameOverride: "game-gameinterface-sharp"
+nameOverride: "game-gameinterface-sharpsports"
+fullnameOverride: "game-gameinterface-sharpsports"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -112,5 +112,5 @@ affinity:
         - key: app
           operator: In
           values:
-          - game-gameinterface-sharp
+          - game-gameinterface-sharpsports
       topologyKey: kubernetes.io/hostname
