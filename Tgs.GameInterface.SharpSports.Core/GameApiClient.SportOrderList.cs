@@ -57,7 +57,7 @@ internal sealed partial class GameApiClient
 				ResultDate: resultDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(resultDateStr),
 				RealResultDate: realResultDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(realResultDateStr),
 				Gold: node["gold"]!.GetValue<decimal>(),
-				RealGold: node["realGold"]!.GetValue<decimal>(),
+				RealGold: node["validAmount"]?.GetValue<decimal>() ?? node["realGold"]!.GetValue<decimal>(),
 				WinGold: node["winGold"]?.GetValue<decimal>() ?? 0m,
 				AdditionalData: node.ToJsonString());
 		}
