@@ -1,12 +1,9 @@
 ﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
-public sealed record class GameRecordSportsGameBetSportsItem(
+public sealed record class GameRecordSportsResult(
 	string ExternalBetId,
 	string PlayerCode,
-	bool IsClosed,
-	bool IsCancel,
-	bool IsRefund,
-	bool IsVoid,
+	SportOrderListState State,
 	bool IsCashout,
 	DateTimeOffset ExternalCreatedOn,
 	DateTimeOffset ExternalClosedOn,

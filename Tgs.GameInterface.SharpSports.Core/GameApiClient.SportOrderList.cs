@@ -42,7 +42,7 @@ internal sealed partial class GameApiClient
 			yield return new(
 				LoginName: node["loginName"]!.GetValue<string>(),
 				OrderId: node["orderId"]!.GetValue<string>(),
-				State: node["state"]!.GetValue<int>(),
+				State: (SportOrderListState)node["state"]!.GetValue<int>(),
 				CashoutType: node["cashoutType"]!.GetValue<string>(),
 				CreateDate: createDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(createDateStr),
 				ResultDate: resultDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(resultDateStr),

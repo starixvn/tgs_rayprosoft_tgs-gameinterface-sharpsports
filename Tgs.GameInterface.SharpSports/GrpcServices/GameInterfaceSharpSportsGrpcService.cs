@@ -13,8 +13,8 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 	IGetService<FundStatusQuery, bool> fundStatusService,
 	IGetService<GameUrlSportsQuery, GameUrlSportsResult> gameUrlService,
 	IGetService<PlayerBalanceQuery, PlayerBalanceResult> playerBalanceService,
-	IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsGameBetSportsItem> gameRecordSportsSettlementService,
-	IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsGameBetSportsItem> gameRecordSportsUnsettlementService)
+	IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsResult> gameRecordSportsSettlementService,
+	IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsResult> gameRecordSportsUnsettlementService)
 	: GameInterfaceSharpSports.GameInterfaceSharpSportsBase
 {
 	public override Task<CheckingServiceReply> CheckingService(CheckingServiceRequest request, ServerCallContext context)
@@ -168,10 +168,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 				{
 					ExternalBetId = result.ExternalBetId,
 					PlayerCode = result.PlayerCode,
-					IsClosed = result.IsClosed,
-					IsCancel = result.IsCancel,
-					IsRefund = result.IsRefund,
-					IsVoid = result.IsVoid,
+					State = (GameRecordState)result.State,
 					IsCashout = result.IsCashout,
 					ExternalCreatedOn = result.ExternalCreatedOn.ToTimestamp(),
 					ExternalClosedOn = result.ExternalClosedOn.ToTimestamp(),
@@ -217,10 +214,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 				{
 					ExternalBetId = result.ExternalBetId,
 					PlayerCode = result.PlayerCode,
-					IsClosed = result.IsClosed,
-					IsCancel = result.IsCancel,
-					IsRefund = result.IsRefund,
-					IsVoid = result.IsVoid,
+					State = (GameRecordState)result.State,
 					IsCashout = result.IsCashout,
 					ExternalCreatedOn = result.ExternalCreatedOn.ToTimestamp(),
 					ExternalClosedOn = result.ExternalClosedOn.ToTimestamp(),

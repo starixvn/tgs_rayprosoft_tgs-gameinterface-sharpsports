@@ -97,21 +97,66 @@ message GameRecordReply {
 message GameRecordInfo {
   string external_bet_id = 1;
   string player_code = 2;
-  bool is_closed = 3;
-  bool is_cancel = 4;
-  bool is_refund = 5;
-  bool is_void = 6;
-  bool is_cashout = 7;
-  google.protobuf.Timestamp external_created_on = 8;
-  google.protobuf.Timestamp external_closed_on = 9;
-  google.protobuf.Timestamp external_payoff_on = 10;
-  phoenix.protobuf.DecimalValue bet = 11;
-  phoenix.protobuf.DecimalValue valid_bet = 12;
-  phoenix.protobuf.DecimalValue settle = 13;
-  phoenix.protobuf.DecimalValue win_loss = 14;
-  string additional_data = 15;
+  GameRecordState state = 3;
+  bool is_cashout = 4;
+  google.protobuf.Timestamp external_created_on = 5;
+  google.protobuf.Timestamp external_closed_on = 6;
+  google.protobuf.Timestamp external_payoff_on = 7;
+  phoenix.protobuf.DecimalValue bet = 8;
+  phoenix.protobuf.DecimalValue valid_bet = 9;
+  phoenix.protobuf.DecimalValue settle = 10;
+  phoenix.protobuf.DecimalValue win_loss = 11;
+  string additional_data = 12;
 }
 
 message CheckingServiceReply{
   string machine_name = 1;
+}
+
+enum GameRecordState{
+	/// <SUMMARY>
+	/// THE WAITING
+	/// 0=確認中
+	/// </SUMMARY>
+	GAME_RECORD_STATE_WAITING = 0;
+	/// <SUMMARY>
+	/// THE RUNNING
+	/// 1=下單成功
+	/// </SUMMARY>
+	GAME_RECORD_STATE_RUNNING = 1;
+	/// <SUMMARY>
+	/// THE WIN
+	/// 2=贏
+	/// </SUMMARY>
+	GAME_RECORD_STATE_WIN = 2;
+	/// <SUMMARY>
+	/// THE LOSS
+	/// 3=輸
+	/// </SUMMARY>
+	GAME_RECORD_STATE_LOSS = 3;
+	/// <SUMMARY>
+	/// THE DRAW
+	/// 4=和
+	/// </SUMMARY>
+	GAME_RECORD_STATE_DRAW = 4;
+	/// <SUMMARY>
+	/// THE CANCEL
+	/// 5=取消
+	/// </SUMMARY>
+	GAME_RECORD_STATE_CANCEL = 5;
+	/// <SUMMARY>
+	/// THE CANCEL ORDER
+	/// 6=撤單
+	/// </SUMMARY>
+	GAME_RECORD_STATE_CANCEL_ORDER = 6;
+	/// <SUMMARY>
+	/// THE FAILED ORDER
+	/// 7=下單失敗
+	/// </SUMMARY>
+	GAME_RECORD_STATE_FAILED_ORDER = 7;
+	/// <SUMMARY>
+	/// THE VOID
+	/// 8=作廢單
+	/// </SUMMARY>
+	GAME_RECORD_STATE_VOID = 8;
 }

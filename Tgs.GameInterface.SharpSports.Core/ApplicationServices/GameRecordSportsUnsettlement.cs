@@ -3,9 +3,9 @@ using Tgs.ServiceUtility;
 
 namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
-public sealed class GameRecordSportsUnsettlement(IGameApiClient apiClient) : IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsGameBetSportsItem>
+public sealed class GameRecordSportsUnsettlement(IGameApiClient apiClient) : IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsResult>
 {
-	public async IAsyncEnumerable<GameRecordSportsGameBetSportsItem> QueryAsync(GameRecordSportsUnsettlementQuery query, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+	public async IAsyncEnumerable<GameRecordSportsResult> QueryAsync(GameRecordSportsUnsettlementQuery query, [EnumeratorCancellation] CancellationToken cancellationToken = default)
 	{
 		var asyncEnumerable = apiClient.SportOrderListAsync(
 			apiBaseUrl: query.ApiUrl,
@@ -24,10 +24,7 @@ public sealed class GameRecordSportsUnsettlement(IGameApiClient apiClient) : IQu
 			yield return new(
 				ExternalBetId: item.OrderId,
 				PlayerCode: item.LoginName,
-				IsClosed: false,
-				IsCancel: false,
-				IsRefund: false,
-				IsVoid: false,
+				State: item.State,
 				IsCashout: false,
 				ExternalCreatedOn: item.CreateDate,
 				ExternalClosedOn: DateTimeOffset.UnixEpoch,

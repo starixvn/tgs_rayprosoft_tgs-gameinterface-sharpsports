@@ -126,8 +126,8 @@ public sealed class SharpSportsController : ControllerBase
 	/// }
 	/// </remarks>
 	[HttpPost]
-	public async IAsyncEnumerable<GameRecordSportsGameBetSportsItem> GameRecordSportsSettlement(
-		[FromServices] IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsGameBetSportsItem> service,
+	public async IAsyncEnumerable<GameRecordSportsResult> GameRecordSportsSettlement(
+		[FromServices] IQueryService<GameRecordSportsSettlementQuery, GameRecordSportsResult> service,
 		[FromBody] GameRecordSportsSettlementQuery query)
 	{
 		var items = await service.QueryAsync(query).ToArrayAsync().ConfigureAwait(false);
@@ -152,8 +152,8 @@ public sealed class SharpSportsController : ControllerBase
 	/// }
 	/// </remarks>
 	[HttpPost]
-	public async IAsyncEnumerable<GameRecordSportsGameBetSportsItem> GameRecordSportsUnsettlement(
-		[FromServices] IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsGameBetSportsItem> service,
+	public async IAsyncEnumerable<GameRecordSportsResult> GameRecordSportsUnsettlement(
+		[FromServices] IQueryService<GameRecordSportsUnsettlementQuery, GameRecordSportsResult> service,
 		[FromBody] GameRecordSportsUnsettlementQuery query)
 	{
 		var items = await service.QueryAsync(query).ToArrayAsync().ConfigureAwait(false);

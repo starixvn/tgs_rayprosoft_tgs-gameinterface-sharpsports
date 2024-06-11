@@ -93,7 +93,7 @@ public sealed class GameRecordSportsUnsettlementTest
 		var responseItem = new SportOrderListResponseItem(
 			LoginName: "4ucmqplxb029",
 			OrderId: "QXT24060509004433396",
-			State: 1,
+			State: SportOrderListState.Running,
 			CashoutType: "0",
 			CreateDate: new DateTimeOffset(2024, 06, 05, 09, 00, 44, TimeSpan.FromHours(+8)),
 			ResultDate: DateTimeOffset.UnixEpoch,
@@ -125,10 +125,7 @@ public sealed class GameRecordSportsUnsettlementTest
 		var data = actual[0];
 		Assert.Equal("QXT24060509004433396", data.ExternalBetId);
 		Assert.Equal("4ucmqplxb029", data.PlayerCode);
-		Assert.False(data.IsClosed);
-		Assert.False(data.IsCancel);
-		Assert.False(data.IsRefund);
-		Assert.False(data.IsVoid);
+		Assert.Equal(SportOrderListState.Running, data.State);
 		Assert.False(data.IsCashout);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-05 09:00:44"), TimeSpan.FromHours(8)), data.ExternalCreatedOn);
 		Assert.Equal(DateTime.UnixEpoch, data.ExternalClosedOn);

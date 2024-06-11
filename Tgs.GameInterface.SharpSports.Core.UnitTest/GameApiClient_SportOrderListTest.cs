@@ -12,7 +12,7 @@ public sealed class GameApiClient_SportOrderListTest
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async Task Settled()
+	public async Task Win()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -43,16 +43,73 @@ public sealed class GameApiClient_SportOrderListTest
 				{
 					new JsonObject
 					{
-						["loginName"] = "4ucmqplxb029",
-						["orderId"] = "01HZ1MJAQ2EYEJWWVEY3M17X91",
-						["state"] = 3,
-						["createDate"] = "2024-05-29 15:40:00",
-						["resultDate"] = "2024-05-29 15:40:02",
-						["realResultDate"] = "2024-05-29 15:40:03",
-						["gold"] = 10m,
-						["realGold"] = 10m,
-						["winGold"] = 2m,
-						["cashoutType"] = "0",
+						["gold"]= 10,
+						["lang"]= "zh-tw",
+						["merId"]= "c6a33e4e235e731b51d2f303199edeb4",
+						["state"]= 2,
+						["betNum"]= 1,
+						["merName"]= "PG-CNY",
+						["orderId"]= "QXT24060517201133513",
+						["winGold"]= 19.3,
+						["cashouts"]=new JsonObject {
+							["stake"]= null,
+							["state"]= null,
+							["initGold"]= null,
+							["wlAmount"]= null,
+							["cashoutId"]= null,
+							["returnAmount"]= null,
+							["placeDateTime"]= null
+						},
+						["lineType"]= "2",
+						["oddfType"]= "H",
+						["playerId"]= "506763ccb6d328049ccc7db080514a06",
+						["realGold"]= 10,
+						["remoteIp"]= "125.227.69.109",
+						["walletId"]= 1,
+						["loginName"]= "4ucmqplxb029",
+						["parlayNum"]= "1",
+						["betDTOList"]=new JsonArray{
+							new JsonObject
+							{
+								["ratio"]= "11",
+								["score"]= "",
+								["gameId"]= "5857725171981148161420720904",
+								["betItem"]= "UCAM穆尔西亚 +11",
+								["ioRatio"]= "0.93",
+								["session"]= "0",
+								["awayTeam"]= "UCAM穆尔西亚",
+								["betItem1"]= "CB Murcia +11",
+								["gameDate"]= "2024-06-06",
+								["gameTime"]= "02:30:00",
+								["gameType"]= "BK",
+								["homeTeam"]= "乌尼卡查马拉加",
+								["playName"]= "让球",
+								["playType"]= "R",
+								["showType"]= "FT",
+								["ratioType"]= "RC",
+								["leagueName"]= "西班牙篮球甲级联赛",
+								["teamSuffix"]= "",
+								["betItemLang"]= "{\"en-us\":\"CB Murcia +11\",\"zh-tw\":\"UCAM穆爾西亞 +11\",\"zh-cn\":\"UCAM穆尔西亚 +11\",\"vi-vn\":\"CB Murcia +11\",\"th-th\":\"CB Murcia +11\"}",
+								["gameTypeSon"]= null,
+								["resultScore"]= "70 : 79",
+								["awayLangTeam"]= "{\"en-us\":\"CB Murcia\",\"zh-tw\":\"UCAM穆爾西亞\",\"zh-cn\":\"UCAM穆尔西亚\",\"vi-vn\":\"CB Murcia\",\"th-th\":\"CB Murcia\"}",
+								["homeLangTeam"]= "{\"en-us\":\"Malaga\",\"zh-tw\":\"烏尼卡查馬拉加\",\"zh-cn\":\"乌尼卡查马拉加\",\"vi-vn\":\"Unicaja Malaga\",\"th-th\":\"Malaga\"}",
+								["playNameLang"]= "{\"en-us\":\"Handicap\",\"zh-tw\":\"讓球\",\"zh-cn\":\"让球\",\"vi-vn\":\"Cược chấp\",\"th-th\":\"แฮนดิแคป\"}",
+								["leagueLangName"]= "{\"en-us\":\"Spain Liga ACB\",\"zh-tw\":\"西班牙籃球甲級聯賽\",\"zh-cn\":\"西班牙篮球甲级联赛\",\"vi-vn\":\"\",\"th-th\":\"Senegal Ligue 2\"}",
+								["betResultDetail"]= "W",
+								["leagueShortName"]= "西甲",
+								["leagueShortLangName"]= "{\"en-us\":\"ESP Liga ACB\",\"zh-tw\":\"西甲\",\"zh-cn\":\"西甲\",\"vi-vn\":\"\",\"th-th\":\"Senegal Ligue 2\"}"
+							}
+						},
+							["createDate"]= "2024-06-05 17:20:11",
+							["playerName"]= "AliFardydon0Ty",
+							["resultDate"]= "2024-06-06 04:18:58",
+							["cashoutType"]= "0",
+							["creditState"]= 1,
+							["validAmount"]= 9.3,
+							["resultDetail"]= null,
+							["terminalType"]= "16",
+							["realResultDate"]= "2024-06-06 04:18:58"
 					},
 				},
 			},
@@ -94,19 +151,20 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Single(actual);
 		var data = actual[0];
 		Assert.Equal("4ucmqplxb029", data.LoginName);
-		Assert.Equal("01HZ1MJAQ2EYEJWWVEY3M17X91", data.OrderId);
-		Assert.Equal(3, data.State);
-		Assert.Equal(new DateTimeOffset(2024, 05, 29, 15, 40, 00, TimeSpan.FromHours(8)), data.CreateDate);
-		Assert.Equal(new DateTimeOffset(2024, 05, 29, 15, 40, 02, TimeSpan.FromHours(8)), data.ResultDate);
-		Assert.Equal(new DateTimeOffset(2024, 05, 29, 15, 40, 03, TimeSpan.FromHours(8)), data.RealResultDate);
-		Assert.Equal(10m, data.Gold);
-		Assert.Equal(10m, data.RealGold);
-		Assert.Equal(2m, data.WinGold);
+		Assert.Equal("QXT24060517201133513", data.OrderId);
+		Assert.Equal(SportOrderListState.Win, data.State);
+		Assert.Equal("0", data.CashoutType);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-05 17:20:11"), TimeSpan.FromHours(8)), data.CreateDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(8)), data.ResultDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(8)), data.RealResultDate);
+		Assert.Equal(10.0m, data.Gold);
+		Assert.Equal(9.3m, data.RealGold);
+		Assert.Equal(19.3m, data.WinGold);
 		Assert.Equal(response["data"]!["orderDTO"]!.AsArray()[0]!.ToJsonString(), data.AdditionalData);
 	}
 
 	[Fact]
-	public async Task ApiResponse_ResultDateEmpty_RealResultDateNull_WinGoldNull_ServiceReturn_ResultDateUnixEpoch_RealResultDateUnixEpoch_WinGold0()
+	public async Task Loss()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -137,16 +195,74 @@ public sealed class GameApiClient_SportOrderListTest
 				{
 					new JsonObject
 					{
-						["loginName"] = "4ucmqplxb029",
-						["orderId"] = "01HZ1MJAQ2EYEJWWVEY3M17X91",
+						["gold"] = 10,
+						["lang"] = "zh-cn",
+						["merId"] = "c6a33e4e235e731b51d2f303199edeb4",
 						["state"] = 3,
-						["createDate"] = "2024-05-29 15:40:00",
-						["resultDate"] = "",
-						["realResultDate"] = null,
-						["gold"] = 10m,
-						["realGold"] = 10m,
-						["winGold"] = null,
+						["betNum"] = 1,
+						["merName"] = "PG-CNY",
+						["orderId"] = "AIS24061114093035050",
+						["winGold"] = 0,
+						["cashouts"] = new JsonObject
+						{
+							["stake"] = null,
+							["state"] = null,
+							["initGold"] = null,
+							["wlAmount"] = null,
+							["cashoutId"] = null,
+							["returnAmount"] = null,
+							["placeDateTime"] = null
+						},
+						["lineType"] = "2",
+						["oddfType"] = "H",
+						["playerId"] = "2864cf4f761cde5a6e3413b49efa2d0d",
+						["realGold"] = 10,
+						["remoteIp"] = "125.227.69.109",
+						["walletId"] = 1,
+						["loginName"] = "4um6m93suvtn",
+						["parlayNum"] = "1",
+						["betDTOList"] = new JsonArray {
+							new JsonObject
+							{
+								["ratio"] = "0.75",
+								["score"] = "0:1",
+								["gameId"] = "5882463674753146881757607540",
+								["betItem"] = "利物浦 (Wboy) -0.5/1",
+								["ioRatio"] = "0.71",
+								["session"] = null,
+								["awayTeam"] = "Man City (nikkitta)",
+								["betItem1"] = "Liverpool (Wboy) -0.5/1",
+								["gameDate"] = "2024-06-11",
+								["gameTime"] = "14:08:00",
+								["gameType"] = "FT",
+								["homeTeam"] = "利物浦 (Wboy)",
+								["playName"] = "滚球:让球",
+								["playType"] = "RE",
+								["showType"] = "RB",
+								["ratioType"] = "REH",
+								["leagueName"] = "E-Soccer 足球电竞之战 - 8 分钟赛事",
+								["teamSuffix"] = "",
+								["betItemLang"] = "{\"en-us\":\"Liverpool (Wboy) -0.5/1\",\"zh-tw\":\"Liverpool (Wboy) -0.5/1\",\"zh-cn\":\"利物浦 (Wboy) -0.5/1\",\"vi-vn\":\"Liverpool (Wboy) -0.5/1\",\"th-th\":\"Liverpool (Wboy) -0.5/1\"}",
+								["gameTypeSon"] = null,
+								["resultScore"] = "0 : 2",
+								["awayLangTeam"] = "{\"en-us\":\"Man City (nikkitta)\",\"zh-tw\":\"Man City (nikkitta)\",\"zh-cn\":\"Man City (nikkitta)\",\"th-th\":\"แมนเชสเตอร์ซิตี (nikkitta)\"}",
+								["homeLangTeam"] = "{\"en-us\":\"Liverpool (Wboy)\",\"zh-tw\":\"Liverpool (Wboy)\",\"zh-cn\":\"利物浦 (Wboy)\",\"vi-vn\":\"Liverpool (Wboy)\",\"th-th\":\"Liverpool (Wboy)\"}",
+								["playNameLang"] = "{\"en-us\":\"Handicap\",\"zh-tw\":\"滾球:讓球\",\"zh-cn\":\"滚球:让球\",\"vi-vn\":\"Bóng lăn Chấp bóng\",\"th-th\":\"แฮนดิแคปสด\"}",
+								["leagueLangName"] = "{\"en-us\":\"E-Soccer Battle - 8 min\",\"zh-tw\":\"E-Soccer 足球電競之戰 - 8 分鐘賽事\",\"zh-cn\":\"E-Soccer 足球电竞之战 - 8 分钟赛事\",\"th-th\":\"E-Soccer แข่งขัน - 8 นาที\"}",
+								["betResultDetail"] = "L",
+								["leagueShortName"] = "E-Soccer 足球电竞之战 - 8 分钟赛事",
+								["leagueShortLangName"] = "{\"en-us\":\"E-Soccer Battle - 8 min\",\"zh-tw\":\"E-Soccer 足球電競之戰 - 8 分鐘賽事\",\"zh-cn\":\"E-Soccer 足球电竞之战 - 8 分钟赛事\",\"th-th\":\"E-Soccer แข่งขัน - 8 นาที\"}"
+							}
+						},
+						["createDate"] = "2024-06-11 14:09:30",
+						["playerName"] = "侯赛因·图克曼t6i",
+						["resultDate"] = "2024-06-11 14:18:57",
 						["cashoutType"] = "0",
+						["creditState"] = 1,
+						["validAmount"] = 10,
+						["resultDetail"] = null,
+						["terminalType"] = "17",
+						["realResultDate"] = "2024-06-11 14:18:57"
 					},
 				},
 			},
@@ -187,20 +303,173 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.NotNull(actual);
 		Assert.Single(actual);
 		var data = actual[0];
-		Assert.Equal("4ucmqplxb029", data.LoginName);
-		Assert.Equal("01HZ1MJAQ2EYEJWWVEY3M17X91", data.OrderId);
-		Assert.Equal(3, data.State);
-		Assert.Equal(new DateTimeOffset(2024, 05, 29, 15, 40, 00, TimeSpan.FromHours(8)), data.CreateDate);
-		Assert.Equal(DateTimeOffset.UnixEpoch, data.ResultDate);
-		Assert.Equal(DateTimeOffset.UnixEpoch, data.RealResultDate);
-		Assert.Equal(10m, data.Gold);
-		Assert.Equal(10m, data.RealGold);
-		Assert.Equal(0m, data.WinGold);
+		Assert.Equal("4um6m93suvtn", data.LoginName);
+		Assert.Equal("AIS24061114093035050", data.OrderId);
+		Assert.Equal(SportOrderListState.Loss, data.State);
+		Assert.Equal("0", data.CashoutType);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:09:30"), TimeSpan.FromHours(8)), data.CreateDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(8)), data.ResultDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(8)), data.RealResultDate);
+		Assert.Equal(10.0m, data.Gold);
+		Assert.Equal(10.0m, data.RealGold);
+		Assert.Equal(0.0m, data.WinGold);
 		Assert.Equal(response["data"]!["orderDTO"]!.AsArray()[0]!.ToJsonString(), data.AdditionalData);
 	}
 
 	[Fact]
-	public async Task Unsettled()
+	public async Task Draw()
+	{
+		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
+		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
+		var clientId = "2a954fedf9a203d646e1a7f3c32528df";
+		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
+		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
+		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
+		var orderState = SportOrderListOrderState.Settled;
+		var timeType = SportOrderListTimeType.CreateDate;
+		var pageNum = 1;
+		var pageSize = 200;
+		var parameters = new JsonObject
+		{
+			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
+			["timeType"] = (byte)timeType,
+			["pageNum"] = pageNum,
+			["pageSize"] = pageSize,
+		};
+		var encoded = "78A8C3AA709E882C2570513843C85264EC00534CAD6DE435CD71F14438912451250C2B0C9BDDBE4B0EFE25A58E801D22EEEDF4F7F75E6D4992FFFD04636BAF239F5276CF17CB6952B57E920B1687EA137A00D20013303B9CF8BD0B7517A8C1DA1D95A8F7129A914A617199C058B165C0FBAC0238E0B0C6E7A53623F89FD3ED2D";
+		var response = new JsonObject
+		{
+			["code"] = 200,
+			["data"] = new JsonObject
+			{
+				["orderDTO"] = new JsonArray
+				{
+					new JsonObject
+					{
+						["gold"] = 10,
+						["lang"] = "zh-cn",
+						["merId"] = "c6a33e4e235e731b51d2f303199edeb4",
+						["state"] = 4,
+						["betNum"] = 1,
+						["merName"] = "PG-CNY",
+						["orderId"] = "AIS24061113291235047",
+						["winGold"] = 10,
+						["cashouts"] = new JsonObject
+						{
+							["stake"] = null,
+							["state"] = null,
+							["initGold"] = null,
+							["wlAmount"] = null,
+							["cashoutId"] = null,
+							["returnAmount"] = null,
+							["placeDateTime"] = null
+						},
+						["lineType"] = "2",
+						["oddfType"] = "H",
+						["playerId"] = "2864cf4f761cde5a6e3413b49efa2d0d",
+						["realGold"] = 10,
+						["remoteIp"] = "125.227.69.109",
+						["walletId"] = 1,
+						["loginName"] = "4um6m93suvtn",
+						["parlayNum"] = "1",
+						["betDTOList"] = new JsonArray {
+							new JsonObject{
+								["ratio"] = "0",
+								["score"] = "0:0",
+								["gameId"] = "5882327728719790081495891",
+								["betItem"] = "England (Lowheels) 0",
+								["ioRatio"] = "0.81",
+								["session"] = null,
+								["awayTeam"] = "England (Lowheels)",
+								["betItem1"] = "England (Lowheels) 0",
+								["gameDate"] = "2024-06-11",
+								["gameTime"] = "13:24:00",
+								["gameType"] = "FT",
+								["homeTeam"] = "Germany (Jekunam)",
+								["playName"] = "滚球:让球",
+								["playType"] = "RE",
+								["showType"] = "RB",
+								["ratioType"] = "REC",
+								["leagueName"] = "E-Soccer 足球电竞之战 - 8 分钟赛事",
+								["teamSuffix"] = "",
+								["betItemLang"] = "{\"en-us\":\"England (Lowheels) 0\",\"zh-tw\":\"England (Lowheels) 0\",\"zh-cn\":\"England (Lowheels) 0\"}",
+								["gameTypeSon"] = null,
+								["resultScore"] = "0 : 0",
+								["awayLangTeam"] = "{\"en-us\":\"England (Lowheels)\",\"zh-tw\":\"England (Lowheels)\",\"zh-cn\":\"England (Lowheels)\"}",
+								["homeLangTeam"] = "{\"en-us\":\"Germany (Jekunam)\",\"zh-tw\":\"Germany (Jekunam)\",\"zh-cn\":\"Germany (Jekunam)\"}",
+								["playNameLang"] = "{\"en-us\":\"Handicap\",\"zh-tw\":\"滾球:讓球\",\"zh-cn\":\"滚球:让球\"}",
+								["leagueLangName"] = "{\"en-us\":\"E-Soccer Battle - 8 min\",\"zh-tw\":\"E-Soccer 足球電競之戰 - 8 分鐘賽事\",\"zh-cn\":\"E-Soccer 足球电竞之战 - 8 分钟赛事\"}",
+								["betResultDetail"] = "P",
+								["leagueShortName"] = "E-Soccer 足球电竞之战 - 8 分钟赛事",
+								["leagueShortLangName"] = "{\"en-us\":\"E-Soccer Battle - 8 min\",\"zh-tw\":\"E-Soccer 足球電競之戰 - 8 分鐘賽事\",\"zh-cn\":\"E-Soccer 足球电竞之战 - 8 分钟赛事\"}"
+							}
+						},
+			["createDate"] = "2024-06-11 13:29:12",
+			["playerName"] = "侯赛因·图克曼t6i",
+			["resultDate"] = "2024-06-11 13:34:52",
+			["cashoutType"] = "0",
+			["creditState"] = 1,
+			["validAmount"] = 0,
+			["resultDetail"] = null,
+			["terminalType"] = "17",
+			["realResultDate"] = "2024-06-11 13:34:52"
+		},
+				},
+			},
+		};
+		var handler = new MockHttpMessageHandler();
+		_ = handler.Expect(HttpMethod.Post, new Uri(apiBaseUrl, "/api/sport/orderList").ToString())
+			.WithHeaders("client_id", clientId)
+			.WithJsonContent(new JsonObject { ["data"] = encoded, ["merchantId"] = merchantId })
+			.Respond(HttpStatusCode.OK, JsonContent.Create(response));
+		var fakeHttpClient = handler.ToHttpClient();
+		var fakeEncryptor = Substitute.For<IParameterEncryptor>();
+		fakeEncryptor.Encrypt(
+			Arg.Is<JsonObject>(x =>
+				x["beginTime"]!.GetValue<string>() == parameters["beginTime"]!.GetValue<string>() &&
+				x["endTime"]!.GetValue<string>() == parameters["endTime"]!.GetValue<string>() &&
+				x["timeType"]!.GetValue<byte>() == parameters["timeType"]!.GetValue<byte>() &&
+				x["pageNum"]!.GetValue<int>() == parameters["pageNum"]!.GetValue<int>() &&
+				x["pageSize"]!.GetValue<int>() == parameters["pageSize"]!.GetValue<int>()),
+			Arg.Is(clientSecret))
+			.Returns(encoded);
+		var fakeLogger = NullLogger<GameApiClient>.Instance;
+		var sut = new GameApiClient(fakeLogger, fakeHttpClient, fakeEncryptor);
+
+		var actual = await sut.SportOrderListAsync(
+			apiBaseUrl,
+			merchantId,
+			clientId,
+			clientSecret,
+			beginTime,
+			endTime,
+			orderState,
+			timeType,
+			pageNum,
+			pageSize)
+			.ToArrayAsync()
+			.ConfigureAwait(true);
+
+		Assert.NotNull(actual);
+		Assert.Single(actual);
+		var data = actual[0];
+		Assert.Equal("4um6m93suvtn", data.LoginName);
+		Assert.Equal("AIS24061113291235047", data.OrderId);
+		Assert.Equal(SportOrderListState.Draw, data.State);
+		Assert.Equal("0", data.CashoutType);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:29:12"), TimeSpan.FromHours(8)), data.CreateDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(8)), data.ResultDate);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(8)), data.RealResultDate);
+		Assert.Equal(10.0m, data.Gold);
+		Assert.Equal(0.0m, data.RealGold);
+		Assert.Equal(10.0m, data.WinGold);
+		Assert.Equal(response["data"]!["orderDTO"]!.AsArray()[0]!.ToJsonString(), data.AdditionalData);
+	}
+
+	[Fact]
+	public async Task Running()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -398,7 +667,8 @@ public sealed class GameApiClient_SportOrderListTest
 		var data = actual[0];
 		Assert.Equal("4ucmqplxb029", data.LoginName);
 		Assert.Equal("QXT24060509070433422", data.OrderId);
-		Assert.Equal(1, data.State);
+		Assert.Equal(SportOrderListState.Running, data.State);
+		Assert.Equal("0", data.CashoutType);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 07, 04, TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(DateTime.UnixEpoch, data.ResultDate);
 		Assert.Equal(DateTime.UnixEpoch, data.RealResultDate);
@@ -548,7 +818,8 @@ public sealed class GameApiClient_SportOrderListTest
 		var data = actual[0];
 		Assert.Equal("4ucmqplxb029", data.LoginName);
 		Assert.Equal("QXT24060509054233411", data.OrderId);
-		Assert.Equal(3, data.State);
+		Assert.Equal(SportOrderListState.Loss, data.State);
+		Assert.Equal("2", data.CashoutType);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 05, 42, TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 16, 47, TimeSpan.FromHours(8)), data.ResultDate);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 16, 47, TimeSpan.FromHours(8)), data.RealResultDate);
