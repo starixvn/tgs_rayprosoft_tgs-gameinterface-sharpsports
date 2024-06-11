@@ -14,27 +14,40 @@ public sealed class GameRecordSportsSettlement(IGameApiClient apiClient) : IQuer
 			clientSecret: query.ClientSecret,
 			beginTime: query.StartTime,
 			endTime: query.EndTime,
+			orderState: SportOrderListOrderState.Settled,
 			timeType: SportOrderListTimeType.ResultDate,
 			pageNum: query.Page,
 			pageSize: query.PageSize,
 			cancellationToken);
 
 		await foreach (var item in asyncEnumerable)
+		{
+			var isClosed = item.State is not (0 or 1);
+			var isCancel = item.State is 5 or 7;
+			var isRefund = item.State is 6;
+			var isVoid = item.State is 8;
+			var isCashout = item.CashoutType is not "0";
+			if (isCashout)
+			{
+				isRefund = true;
+			}
+
 			yield return new(
 				ExternalBetId: item.OrderId,
 				PlayerCode: item.LoginName,
-				IsClosed: item.State is not (0 or 1),
-				IsCancel: item.State is 5 or 7,
-				IsRefund: item.State is 6,
-				IsVoid: item.State is 8,
-				IsCashout: item.CashoutType is not "0",
+				IsClosed: isClosed,
+				IsCancel: isCancel,
+				IsRefund: isRefund,
+				IsVoid: isVoid,
+				IsCashout: isCashout,
 				ExternalCreatedOn: item.CreateDate,
 				ExternalClosedOn: item.ResultDate,
 				ExternalPayoffOn: item.RealResultDate,
 				Bet: item.Gold,
 				ValidBet: item.RealGold,
-				Settle: item.RealGold + item.WinGold,
-				WinLoss: item.WinGold,
+				Settle: item.WinGold,
+				WinLoss: item.WinGold - item.Gold,
 				AdditionalData: item.AdditionalData);
+		}
 	}
 }

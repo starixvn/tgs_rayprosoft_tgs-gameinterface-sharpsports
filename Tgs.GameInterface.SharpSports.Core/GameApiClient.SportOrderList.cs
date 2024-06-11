@@ -6,22 +6,13 @@ namespace Tgs.GameInterface.SharpSports.Core;
 
 internal sealed partial class GameApiClient
 {
-	public async IAsyncEnumerable<SportOrderListResponseItem> SportOrderListAsync(
-		Uri apiBaseUrl,
-		string merchantId,
-		string clientId,
-		string clientSecret,
-		DateTimeOffset beginTime,
-		DateTimeOffset endTime,
-		SportOrderListTimeType timeType,
-		int pageNum,
-		int pageSize,
-		[EnumeratorCancellation] CancellationToken cancellationToken = default)
+	public async IAsyncEnumerable<SportOrderListResponseItem> SportOrderListAsync(Uri apiBaseUrl, string merchantId, string clientId, string clientSecret, DateTimeOffset beginTime, DateTimeOffset endTime, SportOrderListOrderState orderState, SportOrderListTimeType timeType, int pageNum, int pageSize, [EnumeratorCancellation] CancellationToken cancellationToken = default)
 	{
 		var parameters = new JsonObject
 		{
 			["beginTime"] = _dateTimeConverter.DatetimeConvertToString(beginTime),
 			["endTime"] = _dateTimeConverter.DatetimeConvertToString(endTime),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,

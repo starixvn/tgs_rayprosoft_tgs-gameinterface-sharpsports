@@ -12,7 +12,7 @@ public sealed class GameApiClient_SportOrderListTest
 	private static readonly TimeZoneInfo _TimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
 
 	[Fact]
-	public async Task Normal_Process()
+	public async Task Settled()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -20,6 +20,7 @@ public sealed class GameApiClient_SportOrderListTest
 		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
 		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
 		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
+		var orderState = SportOrderListOrderState.Settled;
 		var timeType = SportOrderListTimeType.CreateDate;
 		var pageNum = 1;
 		var pageSize = 200;
@@ -27,6 +28,7 @@ public sealed class GameApiClient_SportOrderListTest
 		{
 			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
 			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,
@@ -81,6 +83,7 @@ public sealed class GameApiClient_SportOrderListTest
 			clientSecret,
 			beginTime,
 			endTime,
+			orderState,
 			timeType,
 			pageNum,
 			pageSize)
@@ -111,6 +114,7 @@ public sealed class GameApiClient_SportOrderListTest
 		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
 		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
 		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
+		var orderState = SportOrderListOrderState.Settled;
 		var timeType = SportOrderListTimeType.CreateDate;
 		var pageNum = 1;
 		var pageSize = 200;
@@ -118,6 +122,7 @@ public sealed class GameApiClient_SportOrderListTest
 		{
 			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
 			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,
@@ -172,6 +177,7 @@ public sealed class GameApiClient_SportOrderListTest
 			clientSecret,
 			beginTime,
 			endTime,
+			orderState,
 			timeType,
 			pageNum,
 			pageSize)
@@ -194,7 +200,7 @@ public sealed class GameApiClient_SportOrderListTest
 	}
 
 	[Fact]
-	public async Task Unsettlement()
+	public async Task Unsettled()
 	{
 		var apiBaseUrl = new Uri("https://api.yuansports1.com/");
 		var merchantId = "c6a33e4e235e731b51d2f303199edeb4";
@@ -202,6 +208,7 @@ public sealed class GameApiClient_SportOrderListTest
 		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
 		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
 		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
+		var orderState = SportOrderListOrderState.Unsettled;
 		var timeType = SportOrderListTimeType.CreateDate;
 		var pageNum = 1;
 		var pageSize = 200;
@@ -209,6 +216,7 @@ public sealed class GameApiClient_SportOrderListTest
 		{
 			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
 			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,
@@ -372,15 +380,16 @@ public sealed class GameApiClient_SportOrderListTest
 		var sut = new GameApiClient(fakeLogger, fakeHttpClient, fakeEncryptor);
 
 		var actual = await sut.SportOrderListAsync(
-			apiBaseUrl,
-			merchantId,
-			clientId,
-			clientSecret,
-			beginTime,
-			endTime,
-			timeType,
-			pageNum,
-			pageSize)
+			apiBaseUrl: apiBaseUrl,
+			merchantId: merchantId,
+			clientId: clientId,
+			clientSecret: clientSecret,
+			beginTime: beginTime,
+			endTime: endTime,
+			orderState: orderState,
+			timeType: timeType,
+			pageNum: pageNum,
+			pageSize: pageSize)
 			.ToArrayAsync()
 			.ConfigureAwait(true);
 
@@ -408,13 +417,15 @@ public sealed class GameApiClient_SportOrderListTest
 		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
 		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
 		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
-		var timeType = SportOrderListTimeType.CreateDate;
+		var orderState = SportOrderListOrderState.Settled;
+		var timeType = SportOrderListTimeType.RealResultDate;
 		var pageNum = 1;
 		var pageSize = 200;
 		var parameters = new JsonObject
 		{
 			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
 			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,
@@ -525,6 +536,7 @@ public sealed class GameApiClient_SportOrderListTest
 			clientSecret,
 			beginTime,
 			endTime,
+			orderState,
 			timeType,
 			pageNum,
 			pageSize)
@@ -566,6 +578,7 @@ public sealed class GameApiClient_SportOrderListTest
 		var clientSecret = "1ff45c6ed7494b04940dc0bd9e0dca6b";
 		var beginTime = new DateTimeOffset(2024, 05, 30, 10, 00, 00, TimeSpan.FromHours(8));
 		var endTime = new DateTimeOffset(2024, 05, 30, 10, 10, 00, TimeSpan.FromHours(8));
+		var orderState = SportOrderListOrderState.Settled;
 		var timeType = SportOrderListTimeType.CreateDate;
 		var pageNum = 1;
 		var pageSize = 200;
@@ -573,6 +586,7 @@ public sealed class GameApiClient_SportOrderListTest
 		{
 			["beginTime"] = TimeZoneInfo.ConvertTime(beginTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
 			["endTime"] = TimeZoneInfo.ConvertTime(endTime.ToUniversalTime(), _TimeZone).ToString("yyyy-MM-dd HH:mm:ss"),
+			["orderState"] = (byte)orderState,
 			["timeType"] = (byte)timeType,
 			["pageNum"] = pageNum,
 			["pageSize"] = pageSize,
@@ -610,6 +624,7 @@ public sealed class GameApiClient_SportOrderListTest
 			clientSecret,
 			beginTime,
 			endTime,
+			orderState,
 			timeType,
 			pageNum,
 			pageSize).ToArrayAsync().AsTask())
