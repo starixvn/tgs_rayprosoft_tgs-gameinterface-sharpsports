@@ -66,7 +66,7 @@ internal sealed class GameInterfaceSharpSportsGrpcService(
 
 		return new()
 		{
-			IsPlayerExist = result.IsPlayerExists,
+			IsPlayerExist = result.IsPlayerExist,
 			Balance = result.Balance
 		};
 	}

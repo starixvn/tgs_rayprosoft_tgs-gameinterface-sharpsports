@@ -16,7 +16,7 @@ public sealed class PlayerBalanceGetService(IGameApiClient apiClient) : IGetServ
 			.ConfigureAwait(false);
 
 		return new(
-			IsPlayerExists: response.IsPlayerExists,
+			IsPlayerExist: response.IsPlayerExist,
 			Balance: response.Balance);
 	}
 }

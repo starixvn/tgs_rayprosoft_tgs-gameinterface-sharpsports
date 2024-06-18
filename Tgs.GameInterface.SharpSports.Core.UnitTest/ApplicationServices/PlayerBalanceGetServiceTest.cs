@@ -31,7 +31,7 @@ public sealed class PlayerBalanceGetServiceTest
 		var actual = await sut.GetAsync(query).ConfigureAwait(true);
 
 		Assert.NotNull(actual);
-		Assert.True(actual.IsPlayerExists);
+		Assert.True(actual.IsPlayerExist);
 		Assert.Equal(60m, actual.Balance);
 	}
 }

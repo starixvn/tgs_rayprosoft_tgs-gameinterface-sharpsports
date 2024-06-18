@@ -1,5 +1,5 @@
 ﻿namespace Tgs.GameInterface.SharpSports.Core.ApplicationServices;
 
 public sealed record class PlayerBalanceResult(
-	bool IsPlayerExists,
+	bool IsPlayerExist,
 	decimal Balance);

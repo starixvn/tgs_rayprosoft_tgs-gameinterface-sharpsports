@@ -34,14 +34,14 @@ internal sealed partial class GameApiClient
 			return code != 400104
 				? throw new ErrorCodeException(code, jsonNode["msg"]?.GetValue<string>() ?? Code2Message(code))
 				: new PlayerBalanceResponse(
-					IsPlayerExists: false,
+					IsPlayerExist: false,
 					Balance: 0.0m);
 		}
 
 		var data = jsonNode["data"]!;
 
 		return new PlayerBalanceResponse(
-			IsPlayerExists: true,
+			IsPlayerExist: true,
 			Balance: data["balance"]!.GetValue<decimal>());
 
 		static string Code2Message(int code) => code switch

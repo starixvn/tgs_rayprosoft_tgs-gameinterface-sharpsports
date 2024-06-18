@@ -109,7 +109,7 @@ public sealed class GameInterfaceSharpSportsGrpcServiceTests
 			ClientSecret: grpcRequest.ClientSecret,
 			PlayerCode: grpcRequest.PlayerCode);
 		var serviceResponse = new PlayerBalanceResult(
-			IsPlayerExists: true,
+			IsPlayerExist: true,
 			Balance: 10m);
 		var fakeService = Substitute.For<IGetService<PlayerBalanceQuery, PlayerBalanceResult>>();
 		fakeService.GetAsync(Arg.Is(serviceRequest), Arg.Any<CancellationToken>()).Returns(ValueTask.FromResult(serviceResponse));
