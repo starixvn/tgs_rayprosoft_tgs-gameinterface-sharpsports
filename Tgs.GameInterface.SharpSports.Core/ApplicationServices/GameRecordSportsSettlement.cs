@@ -22,7 +22,31 @@ public sealed class GameRecordSportsSettlement(IGameApiClient apiClient) : IQuer
 
 		await foreach (var item in asyncEnumerable)
 		{
+
 			var isCashout = item.CashoutType is not "0";
+
+			/*
+			 * 赢或者输的情况
+			 * 1、单线且非提前结算---》 有效投注额取本金
+			 * 2、双线且非提前结算---》 有效投注额取盈亏金额的绝对值
+			 * 3、提前结算----》有效投注额取盈亏的绝对值
+			 * 4、所有串关都算单线
+			 */
+
+			var bet = item.Gold;
+			var validBet = item.RealGold;
+
+			if (item.LineType == "1" && item.CashoutType == "0")
+			{
+				validBet = bet;
+			}
+			else
+			{
+				if (bet < validBet)
+				{
+					validBet = bet;
+				}
+			}
 
 			yield return new(
 				ExternalBetId: item.OrderId,
@@ -32,8 +56,8 @@ public sealed class GameRecordSportsSettlement(IGameApiClient apiClient) : IQuer
 				ExternalCreatedOn: item.CreateDate,
 				ExternalClosedOn: item.ResultDate,
 				ExternalPayoffOn: item.RealResultDate,
-				Bet: item.Gold,
-				ValidBet: item.RealGold,
+				Bet: bet,
+				ValidBet: validBet,
 				Settle: item.WinGold,
 				WinLoss: item.WinGold - item.Gold,
 				AdditionalData: item.AdditionalData);

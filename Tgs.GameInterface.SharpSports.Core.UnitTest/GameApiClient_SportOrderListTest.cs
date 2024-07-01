@@ -154,6 +154,7 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Equal("QXT24060517201133513", data.OrderId);
 		Assert.Equal(SportOrderListState.Win, data.State);
 		Assert.Equal("0", data.CashoutType);
+		Assert.Equal("2", data.LineType);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-05 17:20:11"), TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(8)), data.ResultDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(8)), data.RealResultDate);
@@ -307,6 +308,7 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Equal("AIS24061114093035050", data.OrderId);
 		Assert.Equal(SportOrderListState.Loss, data.State);
 		Assert.Equal("0", data.CashoutType);
+		Assert.Equal("2", data.LineType);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:09:30"), TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(8)), data.ResultDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(8)), data.RealResultDate);
@@ -459,6 +461,7 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Equal("AIS24061113291235047", data.OrderId);
 		Assert.Equal(SportOrderListState.Draw, data.State);
 		Assert.Equal("0", data.CashoutType);
+		Assert.Equal("2", data.LineType);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:29:12"), TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(8)), data.ResultDate);
 		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(8)), data.RealResultDate);
@@ -669,6 +672,7 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Equal("QXT24060509070433422", data.OrderId);
 		Assert.Equal(SportOrderListState.Running, data.State);
 		Assert.Equal("0", data.CashoutType);
+		Assert.Equal("1", data.LineType);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 07, 04, TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(DateTime.UnixEpoch, data.ResultDate);
 		Assert.Equal(DateTime.UnixEpoch, data.RealResultDate);
@@ -820,6 +824,7 @@ public sealed class GameApiClient_SportOrderListTest
 		Assert.Equal("QXT24060509054233411", data.OrderId);
 		Assert.Equal(SportOrderListState.Loss, data.State);
 		Assert.Equal("2", data.CashoutType);
+		Assert.Equal("2", data.LineType);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 05, 42, TimeSpan.FromHours(8)), data.CreateDate);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 16, 47, TimeSpan.FromHours(8)), data.ResultDate);
 		Assert.Equal(new DateTimeOffset(2024, 06, 05, 09, 16, 47, TimeSpan.FromHours(8)), data.RealResultDate);

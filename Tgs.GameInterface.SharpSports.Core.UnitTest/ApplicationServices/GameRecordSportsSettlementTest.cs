@@ -95,6 +95,7 @@ public sealed class GameRecordSportsSettlementTest
 			OrderId: "QXT24060517201133513",
 			State: SportOrderListState.Win,
 			CashoutType: "0",
+			LineType: "2",
 			CreateDate: new DateTimeOffset(DateTime.Parse("2024 -06-05 17:20:11"), TimeSpan.FromHours(+08)),
 			ResultDate: new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(+08)),
 			RealResultDate: new DateTimeOffset(DateTime.Parse("2024-06-06 04:18:58"), TimeSpan.FromHours(+08)),
@@ -225,6 +226,7 @@ public sealed class GameRecordSportsSettlementTest
 			OrderId: "AIS24061114093035050",
 			State: SportOrderListState.Loss,
 			CashoutType: "0",
+			LineType: "2",
 			CreateDate: new DateTimeOffset(DateTime.Parse("2024-06-11 14:09:30"), TimeSpan.FromHours(+08)),
 			ResultDate: new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(+08)),
 			RealResultDate: new DateTimeOffset(DateTime.Parse("2024-06-11 14:18:57"), TimeSpan.FromHours(+08)),
@@ -354,6 +356,7 @@ public sealed class GameRecordSportsSettlementTest
 			OrderId: "AIS24061113291235047",
 			State: SportOrderListState.Draw,
 			CashoutType: "0",
+			LineType: "2",
 			CreateDate: new DateTimeOffset(DateTime.Parse("2024-06-11 13:29:12"), TimeSpan.FromHours(+08)),
 			ResultDate: new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(+08)),
 			RealResultDate: new DateTimeOffset(DateTime.Parse("2024-06-11 13:34:52"), TimeSpan.FromHours(+08)),
@@ -484,6 +487,7 @@ public sealed class GameRecordSportsSettlementTest
 			OrderId: "QXT24060509054233411",
 			State: SportOrderListState.Loss,
 			CashoutType: "2",
+			LineType: "2",
 			CreateDate: new DateTimeOffset(DateTime.Parse("2024-06-05 09:05:42"), TimeSpan.FromHours(+08)),
 			ResultDate: new DateTimeOffset(DateTime.Parse("2024-06-05 09:16:47"), TimeSpan.FromHours(+08)),
 			RealResultDate: new DateTimeOffset(DateTime.Parse("2024-06-05 09:16:47"), TimeSpan.FromHours(+08)),
@@ -523,6 +527,136 @@ public sealed class GameRecordSportsSettlementTest
 		Assert.Equal(1.0m, data.ValidBet);
 		Assert.Equal(9.0m, data.Settle);
 		Assert.Equal(-1.0m, data.WinLoss);
+		Assert.Equal(json.ToJsonString(), data.AdditionalData);
+	}
+
+	[Fact]
+	public async Task The_effective_bet_is_greater_than_the_bet_amount()
+	{
+		var query = new GameRecordSportsSettlementQuery(
+			ApiUrl: new("https://api.yuansports1.com/"),
+			MerchantId: "c6a33e4e235e731b51d2f303199edeb4",
+			ClientId: "2a954fedf9a203d646e1a7f3c32528df",
+			ClientSecret: "1ff45c6ed7494b04940dc0bd9e0dca6b",
+			StartTime: new DateTimeOffset(2024, 06, 28, 10, 50, 00, offset: TimeSpan.FromHours(8)),
+			EndTime: new DateTimeOffset(2024, 06, 28, 11, 00, 10, offset: TimeSpan.FromHours(8)),
+			Page: 1,
+			PageSize: 200);
+		var json = new JsonObject
+		{
+			["gold"] = 10,
+			["lang"] = "en-us",
+			["merId"] = "c6a33e4e235e731b51d2f303199edeb4",
+			["state"] = 2,
+			["betNum"] = 1,
+			["merName"] = "PG-CNY",
+			["orderId"] = "AIS24062809575651429",
+			["winGold"] = 21.2,
+			["cashouts"] = new JsonObject
+			{
+				["stake"] = null,
+				["state"] = null,
+				["initGold"] = null,
+				["wlAmount"] = null,
+				["cashoutId"] = null,
+				["returnAmount"] = null,
+				["placeDateTime"] = null
+			},
+			["lineType"] = "2",
+			["oddfType"] = "H",
+			["playerId"] = "25c81bddabfbfebca1a12ccf61af47d3",
+			["realGold"] = 10,
+			["remoteIp"] = "125.227.69.109",
+			["walletId"] = 1,
+			["loginName"] = "4umv37wchzks",
+			["parlayNum"] = "1",
+			["betDTOList"] = new JsonArray {
+				new JsonObject{
+					["ratio"] = "1.25",
+					["score"] = "2:0",
+					["gameId"] = "5809667133284761601757637176",
+					["betItem"] = "乌拉圭 -1/1.5",
+					["ioRatio"] = "1.12",
+					["session"] = null,
+					["awayTeam"] = "玻利维亚",
+					["betItem1"] = "Uruguay -1/1.5",
+					["gameDate"] = "2024-06-28",
+					["gameTime"] = "09:00:00",
+					["gameType"] = "FT",
+					["homeTeam"] = "乌拉圭",
+					["playName"] = "滚球:让球",
+					["playType"] = "RE",
+					["showType"] = "RB",
+					["ratioType"] = "REH",
+					["leagueName"] = "美洲杯",
+					["teamSuffix"] = "",
+					["betItemLang"] = "{\"en-us\":\"Uruguay -1/1.5\",\"zh-tw\":\"烏拉圭 -1/1.5\",\"zh-cn\":\"乌拉圭 -1/1.5\",\"vi-vn\":\"Uruguay -1/1.5\",\"th-th\":\"Uruguay -1/1.5\"}",
+					["gameTypeSon"] = null,
+					["resultScore"] = "5 : 0",
+					["awayLangTeam"] = "{\"en-us\":\"Bolivia\",\"zh-tw\":\"玻利維亞\",\"zh-cn\":\"玻利维亚\",\"vi-vn\":\"Bolivia\",\"th-th\":\"Bolivia\"}",
+					["homeLangTeam"] = "{\"en-us\":\"Uruguay\",\"zh-tw\":\"烏拉圭\",\"zh-cn\":\"乌拉圭\",\"vi-vn\":\"Uruguay\",\"th-th\":\"Uruguay\"}",
+					["playNameLang"] = "{\"en-us\":\"Handicap\",\"zh-tw\":\"滾球:讓球\",\"zh-cn\":\"滚球:让球\",\"vi-vn\":\"Bóng lăn Chấp bóng\",\"th-th\":\"แฮนดิแคปสด\"}",
+					["leagueLangName"] = "{\"en-us\":\"Copa America\",\"zh-tw\":\"美洲杯\",\"zh-cn\":\"美洲杯\"}",
+					["betResultDetail"] = "W",
+					["leagueShortName"] = "美洲杯",
+					["leagueShortLangName"] = "{\"en-us\":\"Copa America\",\"zh-tw\":\"美洲杯\",\"zh-cn\":\"美洲杯\"}"
+				}
+			},
+			["createDate"] = "2024-06-28 09:57:56",
+			["playerName"] = "towin0gK",
+			["resultDate"] = "2024-06-28 10:53:08",
+			["cashoutType"] = "0",
+			["creditState"] = 1,
+			["validAmount"] = 11.2,
+			["resultDetail"] = null,
+			["terminalType"] = "17",
+			["realResultDate"] = "2024-06-28 10:53:09"
+		};
+		var responseItem = new SportOrderListResponseItem(
+			LoginName: "4umv37wchzks",
+			OrderId: "AIS24062809575651429",
+			State: SportOrderListState.Win,
+			CashoutType: "0",
+			LineType: "2",
+			CreateDate: new DateTimeOffset(DateTime.Parse("2024-06-28 09:57:56"), TimeSpan.FromHours(+08)),
+			ResultDate: new DateTimeOffset(DateTime.Parse("2024-06-28 10:53:08"), TimeSpan.FromHours(+08)),
+			RealResultDate: new DateTimeOffset(DateTime.Parse("2024-06-28 10:53:09"), TimeSpan.FromHours(+08)),
+			Gold: 10.0m,
+			RealGold: 11.2m,
+			WinGold: 21.2m,
+			AdditionalData: json.ToJsonString());
+		var fakeGameApiClient = Substitute.For<IGameApiClient>();
+		_ = fakeGameApiClient
+			.SportOrderListAsync(
+				apiBaseUrl: Arg.Is(query.ApiUrl),
+				merchantId: Arg.Is(query.MerchantId),
+				clientId: Arg.Is(query.ClientId),
+				clientSecret: Arg.Is(query.ClientSecret),
+				beginTime: Arg.Is(query.StartTime),
+				endTime: Arg.Is(query.EndTime),
+				orderState: Arg.Is(SportOrderListOrderState.Settled),
+				timeType: Arg.Is(SportOrderListTimeType.ResultDate),
+				pageNum: Arg.Is(1),
+				pageSize: Arg.Is(200))
+			.Returns(new[] { responseItem }.ToAsyncEnumerable());
+		var sut = new GameRecordSportsSettlement(fakeGameApiClient);
+
+		var actual = await sut.QueryAsync(query).ToArrayAsync().ConfigureAwait(true);
+
+		Assert.NotNull(actual);
+		Assert.Single(actual);
+		var data = actual[0];
+		Assert.Equal("AIS24062809575651429", data.ExternalBetId);
+		Assert.Equal("4umv37wchzks", data.PlayerCode);
+		Assert.Equal(SportOrderListState.Win, data.State);
+		Assert.False(data.IsCashout);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-28 09:57:56"), TimeSpan.FromHours(8)), data.ExternalCreatedOn);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-28 10:53:08"), TimeSpan.FromHours(8)), data.ExternalClosedOn);
+		Assert.Equal(new DateTimeOffset(DateTime.Parse("2024-06-28 10:53:09"), TimeSpan.FromHours(8)), data.ExternalPayoffOn);
+		Assert.Equal(10.0m, data.Bet);
+		Assert.Equal(10.0m, data.ValidBet);
+		Assert.Equal(21.2m, data.Settle);
+		Assert.Equal(11.2m, data.WinLoss);
 		Assert.Equal(json.ToJsonString(), data.AdditionalData);
 	}
 }

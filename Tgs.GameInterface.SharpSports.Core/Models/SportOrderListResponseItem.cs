@@ -5,6 +5,7 @@ public sealed record class SportOrderListResponseItem(
 	string LoginName,
 	string OrderId,
 	SportOrderListState State,
+	string LineType,
 	string CashoutType,
 	DateTimeOffset CreateDate,
 	DateTimeOffset ResultDate,
