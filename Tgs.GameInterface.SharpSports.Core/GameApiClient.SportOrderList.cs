@@ -44,6 +44,7 @@ internal sealed partial class GameApiClient
 				OrderId: node["orderId"]!.GetValue<string>(),
 				State: (SportOrderListState)node["state"]!.GetValue<int>(),
 				CashoutType: node["cashoutType"]!.GetValue<string>(),
+				LineType: node["lineType"]!.GetValue<string>(),
 				CreateDate: createDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(createDateStr),
 				ResultDate: resultDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(resultDateStr),
 				RealResultDate: realResultDateStr is null ? DateTimeOffset.UnixEpoch : _dateTimeConverter.StringConvertToDatetime(realResultDateStr),

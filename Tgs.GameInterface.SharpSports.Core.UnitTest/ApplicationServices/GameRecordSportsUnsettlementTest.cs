@@ -95,6 +95,7 @@ public sealed class GameRecordSportsUnsettlementTest
 			OrderId: "QXT24060509004433396",
 			State: SportOrderListState.Running,
 			CashoutType: "0",
+			LineType: "2",
 			CreateDate: new DateTimeOffset(2024, 06, 05, 09, 00, 44, TimeSpan.FromHours(+8)),
 			ResultDate: DateTimeOffset.UnixEpoch,
 			RealResultDate: DateTimeOffset.UnixEpoch,
