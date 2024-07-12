@@ -58,7 +58,7 @@ internal sealed partial class GameApiClient(
 			Prefix = logPrefix,
 			ServerName = Environment.MachineName.NoLongerThan(128),
 			RequestHeaders = request?.Headers + request?.Content?.Headers?.ToString(),
-			Requestoarameters = parameters.ToJsonString(),
+			RequestParameters = parameters.ToJsonString(),
 			RequestContent = (await requestContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false)).NoLongerThan(4096),
 			ResponseHeaders = response.Headers.ToString(),
 			ResponseContent = responseContent.NoLongerThan(4096),
